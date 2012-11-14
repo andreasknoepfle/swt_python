@@ -1,0 +1,276 @@
+%~ Version 1.5 of the PDF specification
+\pdfminorversion=5
+%~ compression of non-stream objects
+\pdfobjcompresslevel=2
+
+\documentclass[
+    t,
+    smaller,
+    compress,
+    %~ draft
+]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usetheme{BerlinFU}
+
+
+
+%~ \usefonttheme{professionalfonts}
+%~ \usepackage[noae]{Sweave}
+
+
+\hypersetup{pdfstartview={FitH}} % By default the pdf fit the width of the screen.
+%~ \hypersetup{pdfpagemode=FullScreen}
+
+
+% http://tex.stackexchange.com/questions/16357/how-can-i-position-an-image-in-an-arbitrary-position-in-beamer
+\usepackage{tikz}
+\tikzset{
+  every overlay node/.style={
+    anchor=north west,
+  },
+}
+% Usage:
+% \tikzoverlay at (-1cm,-5cm) {content};
+% or
+% \tikzoverlay[text width=5cm] at (-1cm,-5cm) {content};
+\def\tikzoverlay{%
+   \tikz[baseline,overlay]\node[every overlay node]
+}%
+
+
+% http://tex.stackexchange.com/questions/48473/best-way-to-give-sources-of-images-used-in-a-beamer-presentation
+\usepackage[absolute,overlay]{textpos}
+
+\setbeamercolor{framesource}{fg=gray}
+\setbeamerfont{framesource}{size=\footnotesize}
+
+\newcommand{\source}[1]{
+    \vspace{-4pt}
+    \begin{beamercolorbox}[ht=4pt,right]{framesource}
+        \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} Quelle: {#1}
+    \end{beamercolorbox}
+}
+
+
+\defbeamertemplate*{section in toc}{my theme}
+{\leavevmode\leftskip=0em\large{\usebeamercolor[fg]{titlelike}\inserttocsectionnumber.} \inserttocsection\par\vspace{10pt}}
+
+\defbeamertemplate*{subsection in toc}{my theme}
+{\leavevmode\leftskip=2em\normalsize{\usebeamercolor[fg]{titlelike}\inserttocsectionnumber.\inserttocsubsectionnumber.} \inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{my theme}
+{\leavevmode\leftskip=3.5em\normalsize\usebeamerfont{subsection in toc}\usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
+
+
+%%% Formatting table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{booktabs, colortbl, tabularx}
+
+
+%% PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetikzlibrary{shapes, intersections, calc, backgrounds}
+%% Ploting
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+
+%~ Anzahl Folien: pro Folie solltet ihr mindestens 90s einplanen
+%~
+%~ Übergänge roter Faden
+
+
+%~ \begin{frame}
+  %~ \frametitle{}
+  %~ \begin{columns}[T]
+    %~ \begin{column}{.5\textwidth}<1->
+      %~
+    %~ \end{column}
+    %~ \begin{column}{.5\textwidth}<1->
+      %~ \begin{figure}
+        %~ \includegraphics[height=40mm]{}
+        %~ \source{[\ref{}]}
+      %~ \end{figure}
+    %~ \end{column}
+  %~ \end{columns}
+%~ \end{frame}
+
+
+\title{Webframeworks für Python}
+\subtitle{Vorstellung und Vergleich}
+\author{Andreas Knöpfle, Bastien Sachs und Tobias Schmid}
+\institute{Institut für Informatik}
+\date{28.\,November 2012}
+%~ \titlegraphic{silberlaube2}
+
+
+\begin{document}
+
+
+{
+\setbeamertemplate{footline}{}
+\begin{frame} % Titelseite
+    \titlepage
+\end{frame}
+}
+
+
+\begin{frame}
+  %\frametitle{}
+  Einstiegs-Idee:\\
+  viele Logos der Webframeworks für Python\\
+  Stichpunkte:\\
+   - In Python geschriebene Webframework gibt es wie „Sand am Meer“\\
+   - Warum? Einblick gibt unser Vortrag\\
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Gliederung}
+  \tableofcontents
+  %~ roter Faden
+\end{frame}
+
+
+\section{Python~-- Programmiersprache fürs Web?}
+\begin{frame}
+  \frametitle{Python~-- Programmiersprache fürs Web?}
+
+  \begin{itemize}[<1->]
+    \item 1991 erstmals erschienen, aktuelle Versionen: 3.3.0 (September 2012), 2.7.3 (April 2012)
+    \item Entwurfsphilosophie betont Programmlesbarkeit
+    \begin{itemize}[<1->]
+      \item Blöcke durch gleiche Einrückung begrenzt
+      \item relativ wenige Schlüsselwörter
+    \end{itemize}
+    %\item Dynamische Programmiersprache
+   % Python-Interpreter mit interaktiven Modus
+    \item objektorientierte, aspektorientierte und funktionale Programmierung
+    \item dynamische Datentypen, garbage collection
+    \item große, umfangreiche Standardbibliothek “batteries included”
+  \end{itemize}
+  %~  * Plugins für Eclipse, NetBeans, Vim, Emacs und v.a.
+
+  Logo Python
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Python~-- Programmiersprache fürs Web?}
+
+  eventl. Codebeispiele, Gegenüberstellungen, Erklärung
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Web Server Gateway Interface (WSGI)}
+ * Apache (mod\_wsgi), nginx (uWSGI)
+
+ Bild
+ % http://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
+\end{frame}
+
+
+\section{Webframeworks für Python}
+\begin{frame}
+  \frametitle{Unterteilung Webframeworks für Python}
+  Popular Full-Stack Frameworks, Other Full-Stack Frameworks, Basic Frameworks
+ * Django\\
+ * CherryPy, CubicWeb, Flask, Grok, Plone, Pylons, Pyramid, TurboGears, web2py, Zope 2\\
+ * Bottle, Karrigell, Nagare, Pyjamas, Quixote, Spyce, Tornado, TwistedWeb, Web.py\\
+ * Nicht mehr aktiv: BlueBream, Nevow, Webware\\
+\end{frame}
+
+
+\begin{frame}
+Hauptteil:\\
+Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
+(konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Persistenzschicht}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Templates, I18N, L10N}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Konfiguration, Routing}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Formulare, Validierung}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Sicherheitmechanismen}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Bootstrapping, Scaffolding, Erweiterbarkeit}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Extras: WebServices, Caching, Tests}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Kriterienübersicht}
+ * Vergleichstabellen (Django vs. ...)
+\end{frame}
+
+
+\section{Fazit}
+\begin{frame}
+  \frametitle{Fazit}
+
+  Je Anforderungen an das Webframework (“Taste”)\\
+  \dots
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Quellen der Abbildungen}
+  \footnotesize
+  \begin{enumerate}[<1->]
+    \item Innenhof Informatik
+        \url{http://www.flickr.com/photos/bennybenny/3597853896/} \label{illu:1}
+  \end{enumerate}
+  alle URLs aufgerufen am 14. November 2012.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quellen}
+http://www.infoworld.com/d/application-development/pillars-python-six-python-web-frameworks-compared-169442
+http://wiki.python.org/moin/WebFrameworks
+http://wiki.python-forum.de/Web-Frameworks
+http://blog.ianbicking.org/turbogears-and-pylons.html
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ende der Präsentation}
+    \LARGE
+    \begin{itemize}[<1->]
+        \item Vielen Dank für Ihre Aufmerksamkeit.
+        \item
+        \item offene Fragen?
+        \item Diskussion
+        \begin{itemize}[<1->]
+          \Large
+          \item Kritik, Anregungen
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\end{document}
