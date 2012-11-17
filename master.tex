@@ -1,7 +1,5 @@
-%~ Version 1.5 of the PDF specification
-\pdfminorversion=5
-%~ compression of non-stream objects
-\pdfobjcompresslevel=2
+\pdfminorversion=5      %~ Version 1.5 of the PDF specification
+\pdfobjcompresslevel=2  %~ compression of non-stream objects
 
 \documentclass[
     t,
@@ -12,7 +10,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usetheme{BerlinFU}
-
 
 
 %~ \usefonttheme{professionalfonts}
@@ -63,15 +60,15 @@
 {\leavevmode\leftskip=3.5em\normalsize\usebeamerfont{subsection in toc}\usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
 
 
-%%% Formatting table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Formatting table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{booktabs, colortbl, tabularx}
 
 
 %% PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usetikzlibrary{shapes, intersections, calc, backgrounds}
+%\usetikzlibrary{shapes, intersections, calc, backgrounds}
 %% Ploting
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
+%\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
 
 
 %~ Anzahl Folien: pro Folie solltet ihr mindestens 90s einplanen
@@ -93,6 +90,9 @@
     %~ \end{column}
   %~ \end{columns}
 %~ \end{frame}
+
+
+\newlength\yearposx
 
 
 \title{Webframeworks für Python}
@@ -135,8 +135,41 @@
 \begin{frame}
   \frametitle{Python~-- Programmiersprache fürs Web?}
 
+  % 1991 erstmals erschienen, aktuelle Versionen: 3.3.0 (September 2012), 2.7.3 (April 2012)
+  % http://en.wikipedia.org/wiki/History_of_Python
+  \vspace{12pt}
+  \begin{tikzpicture}[scale=0.48] % timeline 1991-2012->
+    % define coordinates (begin, used, end, arrow)
+    \foreach \x in {1991,1994,2004,2008,2012,2013}{
+        \pgfmathsetlength\yearposx{(\x-1991)*1cm};
+        \coordinate (y\x)   at (\yearposx,0);
+        \coordinate (y\x t) at (\yearposx,+3pt);
+        \coordinate (y\x b) at (\yearposx,-3pt);
+    }
+
+    % draw horizontal line with arrow
+    \draw [->] (y1991) -- (y2013);
+
+    % draw ticks
+    \foreach \x in {1991,1994,2004,2008,2012}
+        \draw (y\x t) -- (y\x b);
+
+    % annotate (draw nodes)
+    \foreach \x in {1991,1994,2004,2008,2012}
+        \node at (y\x) [below=3pt] {\x};
+
+    \node at (6.5cm, 2.5cm) {\pgftext{\includegraphics[height=1cm]{python_1990.png}}};
+    \node at (18cm, 2.5cm) {\pgftext{\includegraphics[height=1cm]{python_logo_2006.png}}};
+
+    \fill (y1991) circle (3pt) node[above=3pt] {0.9};
+    \fill (y1994) circle (3pt) node[above=3pt] {1.0};
+    \fill (y2004) circle (3pt) node[above=3pt] {2.0};
+    \fill (y2008) circle (3pt) node[above=3pt] {3.0};
+    \fill (y2012) circle (3pt) node[above=3pt] {2.7.3, 3.3.0};
+  \end{tikzpicture}
+  \vspace{12pt}
+
   \begin{itemize}[<1->]
-    \item 1991 erstmals erschienen, aktuelle Versionen: 3.3.0 (September 2012), 2.7.3 (April 2012)
     \item Entwurfsphilosophie betont Programmlesbarkeit
     \begin{itemize}[<1->]
       \item Blöcke durch gleiche Einrückung begrenzt
@@ -148,9 +181,11 @@
     \item dynamische Datentypen, garbage collection
     \item große, umfangreiche Standardbibliothek “batteries included”
   \end{itemize}
-  %~  * Plugins für Eclipse, NetBeans, Vim, Emacs und v.a.
 
-  Logo Python
+ %~ http://brainsik.theory.org/.:./2009/why-reddit-uses-python
+ %~ http://www.quora.com/Quora-Infrastructure/Why-did-Quora-choose-Python-for-its-development
+
+  %~  * Plugins für Eclipse, NetBeans, Vim, Emacs und v.a.
 \end{frame}
 
 
@@ -164,10 +199,18 @@
 
 \begin{frame}
   \frametitle{Web Server Gateway Interface (WSGI)}
- * Apache (mod\_wsgi), nginx (uWSGI)
+ * Apache (mod\_wsgi), nginx (uWSGI), Gunicorn
 
  Bild
  % http://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Python~-- Programmiersprache fürs Web!}
+
+  Zusammenfassung der genannten Punkte
+
 \end{frame}
 
 
@@ -191,11 +234,42 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
 
 \begin{frame}
   \frametitle{Persistenzschicht}
+  \begin{itemize}[<1->]
+    \item SQL ORM
+    \begin{itemize}
+        \item Django built-in ORM (Django)
+        \item SQLAlchemy (Grok,Pylons,Zope)
+        \item Storm (Grok )
+        \item SQLObject (Pylons,TurboGears)
+        \item DAL (web2py)
+     \end{itemize}
+    \item MongoDB ORM
+    \begin{itemize}[<1->]
+        \item Django MongoDB Engine (Django)
+        \item Ming (TurboGears)
+    \end{itemize}
+    \item ...
+  \end{itemize}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Templates, I18N, L10N}
+  \begin{itemize}[<1->]
+    \item Template Engines:
+        \begin{itemize}[<1->]
+            \item Python built-in
+            \item Django template language
+            \item Cheetah (Django, Turbogears, Pylons)
+            \item Myghty
+        \end{itemize}
+  \item I18N + L10N
+  \begin{itemize}[<1->]
+    \item gettext
+   \end{itemize}
+  \end{itemize}
+
 \end{frame}
 
 
@@ -263,6 +337,7 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Quellen}
