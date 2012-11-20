@@ -474,32 +474,59 @@ Requests:
 \end{frame}
 
 \begin{frame}
-	\frametitle{Vergleich Konfiguration, Routing}
+	\frametitle{Vergleich der Frameworks}
 	
 	
 	\begin{table}[h]
-		\begin{tabular}{|c|c|c|}
+		\begin{tabular}{|c|c|c|c|c|}
 			\hline
-			 & Django & TurboGear 2.0  \\ \hline
-		  	Konfiguration & \cellcolor{orange} mächtig, evtl. Overload  &  \\ \hline
-		  	Routing & \cellcolor{orange} mächtig, evtl. Overload & \cellcolor{green} einfach,anpassbar	   \\ \hline
+			 & Django & TurboGear2.0 & web2py & Pylons  \\ \hline
+		  	Routing & 
+		  		\cellcolor{dkgreen} mächtig	& 																\cellcolor{dkgreen} einfach	&
+		  		\cellcolor{dkgreen} einfach	&
+		  		\cellcolor{dkgreen} einfach	\\ \hline
 		 \end{tabular}
 	\end{table}
 
 	
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
-  
-  \begin{itemize}[<1->]
-    \item django.forms
-	 \begin{itemize}[<1->]
-		\item HTML form widget
-		\item Field validation
-		\item ...
-	\end{itemize}
-  \end{itemize}
+
+	Django:
+	\begin{lstlisting}
+	from django import forms
+
+	class ContactForm(forms.Form):
+    		subject = forms.CharField(max_length=100)
+    		message = forms.CharField()
+    		sender = forms.EmailField()
+    		cc_myself = forms.BooleanField(required=False)	
+	\end{lstlisting}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	  \frametitle{Formulare, Validierung}
+	Django:
+	\begin{lstlisting}
+	from django.shortcuts import render
+	from django.http import HttpResponseRedirect
+
+	def contact(request):
+    		if request.method == 'POST': 
+        		form = ContactForm(request.POST)
+       		if form.is_valid():
+            		return HttpResponseRedirect('/thanks/')
+    		else:
+        		form = ContactForm()
+
+    		return render(request, 'contact.html', {
+        		'form': form,
+    })
+
+	\end{lstlisting}
 
 \end{frame}
 
