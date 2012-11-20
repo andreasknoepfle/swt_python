@@ -286,7 +286,7 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
 \begin{frame}
   \frametitle{Persistenz}
  
-    SQL-ORMs
+    \textbf{SQL-ORMs}
     \begin{itemize}[<1->]
         \item Django built-in ORM (Django)
         \item SQLAlchemy (Pylons) %Gork,Zope
@@ -294,7 +294,7 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
         \item SQLObject (Pylons,TurboGears)
         \item DAL (web2py)
      \end{itemize}
-     MongoDB ORMs
+     \textbf{MongoDB ORMs}
     \begin{itemize}[<1->]
         \item Django MongoDB Engine (Django)
         \item Ming (TurboGears)
@@ -336,23 +336,25 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 
 \begin{frame}
-  \frametitle{Templates, I18N, L10N}
+  \frametitle{Templates}
+  \framesubtitle{Templates in Python}
   \begin{itemize}[<1->]
     \item Template Engines:
         \begin{itemize}[<1->]
-            \item Python built-in
             \item Django template language
             \item Cheetah (Django, Turbogears, Pylons)
             \item Myghty
         \end{itemize}
-  \item I18N + L10N
-  \begin{itemize}[<1->]
-    \item gettext
-   \end{itemize}
   \end{itemize}
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{I18N und L10N}
+  \begin{itemize}[<1->]
+    \item gettext
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Konfiguration, Routing}
