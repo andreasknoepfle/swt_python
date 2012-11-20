@@ -12,8 +12,23 @@
 
 \usepackage{color} % für Farben im allgemeinen
 \usepackage{colortbl}% für die Hintergrundfarbe einzelner Zellen in Tabellen
+\usepackage{listings,bera}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{backgroundc}{rgb}{0.95,0.95,0.95}
+\lstset{language=Python,
+basicstyle=\footnotesize, 
+keywordstyle=\color{keywords},
+commentstyle=\color{dkgreen},
+ stringstyle=\color{mauve},
+ breakatwhitespace=true,
+ backgroundcolor=\color{backgroundc},
+ frame=single, 
+emph}
 
 \usetheme{BerlinFU}
+
 
 % --- Farbdefinitionen ----------------------------------------
 %\definecolor{red}{rgb}{1,0,0}
@@ -145,7 +160,7 @@
 	\begin{table}[h]
 		\begin{tabular}{|c|}
 			\hline
-			 \cellcolor{green} sehr gute Lösung  \\ \hline
+			 \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
 		  	\cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ \hline 
 		  	\cellcolor{red} nicht optimale Lösung \\ \hline 
 		 \end{tabular}
@@ -239,12 +254,25 @@
 
 \section{Webframeworks für Python}
 \begin{frame}
-  \frametitle{Unterteilung Webframeworks für Python}
-  Popular Full-Stack Frameworks, Other Full-Stack Frameworks, Basic Frameworks
- * Django\\
- * CherryPy, CubicWeb, Flask, Grok, Plone, Pylons, Pyramid, TurboGears, web2py, Zope 2\\
- * Bottle, Karrigell, Nagare, Pyjamas, Quixote, Spyce, Tornado, TwistedWeb, Web.py\\
- * Nicht mehr aktiv: BlueBream, Nevow, Webware\\
+  \frametitle{Webframeworks für Python}
+  	 Full-Stack Frameworks
+  		\begin{itemize}
+  			\item Django
+  			\item TurboGears 
+  			\item web2py
+  			\item Pylons/Pyramid
+  		\end{itemize}
+  		 Microframeworks
+  		\begin{itemize}
+  			\item Bottle
+  			\item CherryPy
+  		\end{itemize}
+  
+% , Other Full-Stack Frameworks, Basic Frameworks
+% * Django\\
+% * CherryPy, CubicWeb, Flask, Grok, Plone, Pylons, %Pyramid, TurboGears, web2py, Zope 2\\
+% * Bottle, Karrigell, Nagare, Pyjamas, Quixote, Spyce, %Tornado, TwistedWeb, Web.py\\
+% * Nicht mehr aktiv: BlueBream, Nevow, Webware\\
 \end{frame}
 
 
@@ -256,7 +284,7 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
 
 
 \begin{frame}
-  \frametitle{Persistenzschicht}
+  \frametitle{Persistenz}
   \begin{itemize}[<1->]
     \item SQL ORM
     \begin{itemize}
@@ -328,36 +356,28 @@ TurboGears
     	
  	\end{itemize}
 \end{frame}  
-
-
-	\begin{verbatim}
-		
-		Django Example:
-	
-			urlpatterns = patterns('',
-				(r'^articles/2003/$','news.views.special_case_2003'),
-				(r'^articles/(\d{4})/$','news.views.year_archive'),
-				(r'^articles/(\d{4})/(\d{2})/$','news.views.month_archive'),
-				(r'^articles/(\d{4})/(\d{2})/(\d+)/$','news.views.article_detail'),
-			)
-		
-		
-		
-		Requests:
-	
+\begin{frame}[fragile]
+\frametitle{Routing Beispiel Django}
+\begin{lstlisting}
+urlpatterns = patterns('',
+	(r'^articles/2003/$','news.views.special_case_2003'),
+	(r'^articles/(\d{4})/$','news.views.year_archive'),
+	(r'^articles/(\d{4})/(\d{2})/$','news.views.month_archive'),
+	(r'^articles/(\d{4})/(\d{2})/(\d+)/$','news.views.article_detail'),
+)
+\end{lstlisting}
+	Requests:
+	\begin{lstlisting}
 		/articles/2005/03/		=> month_archive(request,'2005','03')
 		/articles/2005/3/		=> no match
 		/articles/2003/			=> special_case_2003(request,'2003')
 		/articles/2003			=> no match
 		/articles/2003/03/03/	=> article_detail(request,'2003','03','03')
-		
-	\end{verbatim}
-	
-	
-	\begin{verbatim}
-	
-		TurboGear 2.0 Example:
-	
+	\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Routing Beispiel TurboGear 2.0}
+\begin{lstlisting}	
 		def setup_routes(self):
 		
 		map = Mapper(directory=config['pylons.paths']['controllers'],
@@ -367,9 +387,9 @@ TurboGears
 		map.connect('*url',controller='root', action='routes_placeholder')
 
 		config['routes.map'] = map
-				
-	\end{verbatim}
-	
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
 	\frametitle{Vergleich Konfiguration, Routing}
 	
