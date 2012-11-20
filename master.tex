@@ -256,14 +256,14 @@ commentstyle=\color{dkgreen},
 \begin{frame}
   \frametitle{Webframeworks für Python}
   	 Full-Stack Frameworks
-  		\begin{itemize}
+  		\begin{itemize}[<1->]
   			\item Django
   			\item TurboGears 
   			\item web2py
   			\item Pylons/Pyramid
   		\end{itemize}
   		 Microframeworks
-  		\begin{itemize}
+  		\begin{itemize}[<1->]
   			\item Bottle
   			\item CherryPy
   		\end{itemize}
@@ -339,14 +339,66 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
   \begin{itemize}[<1->]
-    \item Template Engines:
+  	\item Text-basiert:
         \begin{itemize}[<1->]
             \item Django template language
-            \item Cheetah (Django, Turbogears, Pylons)
-            \item Myghty
+            \item Cheetah 
+            \item Mako (füher Myghty)
+            \item Jinja2
+        \end{itemize}
+    \item XML-basiert:
+    	\begin{itemize}[<1->]
+    		\item Genshi
+            \item SimpleTAL
         \end{itemize}
   \end{itemize}
+  \begin{block}{Bemerkung}
+    Es gibt noch sehr viel mehr Template-Engines. \\
+    (siehe http://wiki.python.org/moin/Templating)
+  \end{block}
+\end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Templates}
+	\framesubtitle{Django template language}
+	 \begin{itemize}[<1->]
+	 	\item Template-Inheritance
+	 	\item Unterstüzt Filter und Kontrollstrukturen
+	 \end{itemize}
+\begin{lstlisting}
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+\end{lstlisting}
+\begin{lstlisting}
+{% extends "base.html" %}
+
+{% block content %}
+    Inhalt: {{ content }} 
+{% endblock %}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Templates}
+	\framesubtitle{Cheetah}
+	 \begin{itemize}[<1->]
+	 	\item Wird von allen Full-Stack-Frameworks unterstützt
+	 	\item Große und aktive Community
+	 	\item Templates können von Python-Klassen abgeleitet werden
+	 \end{itemize}
+\begin{lstlisting}
+<table>
+   #for $client in $clients
+      <tr>
+         <td>$client.surname, $client.firstname</td>
+         <td><a href="mailto:$client.email">$client.email</a></td>
+      </tr>
+   #end for
+</table>
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
