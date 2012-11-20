@@ -339,7 +339,7 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
 
 \begin{frame}
   \frametitle{Konfiguration, Routing}
-	Django
+	Django:
   	\begin{itemize}[<1->]
     	\item URLconf (URL Konfiguration)
     	\item einfaches Mapping zwischen URL-Patterns (Regex)
@@ -354,21 +354,6 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
   	 \end{itemize}
   	 
 \end{frame}
-
-
-\begin{frame}
-  \frametitle{Konfiguration, Routing}
-TurboGears
-
-"...extremely flexible for power users and very simple to use for standard projects."
-
-  	 \begin{itemize}[<1->]
-    	\item Object Dispatch, und built in Routes Integration
-    	\item kann überschrieben werden
-    	\item development.ini, test.ini, production.ini
-    	
- 	\end{itemize}
-\end{frame}  
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel Django}
 \begin{lstlisting}
@@ -388,6 +373,21 @@ urlpatterns = patterns('',
 		/articles/2003/03/03/	=> article_detail(request,'2003','03','03')
 	\end{lstlisting}
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{Konfiguration, Routing}
+TurboGears:
+
+"...extremely flexible for power users and very simple to use for standard projects."
+
+  	 \begin{itemize}[<1->]
+    	\item Object Dispatch, und built in Routes Integration
+    	\item kann überschrieben werden
+    	\item development.ini, test.ini, production.ini
+    	
+ 	\end{itemize}
+\end{frame}  
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel TurboGear 2.0}
 \begin{lstlisting}	
@@ -402,6 +402,37 @@ urlpatterns = patterns('',
 		config['routes.map'] = map
 \end{lstlisting}
 \end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Konfiguration, Routing}
+web2py
+
+\begin{lstlisting}
+	http://127.0.0.1:8000/a/c/f.html
+\end{lstlisting}
+
+	wird auf Funktion f() in Controller c.py in Applikation a abgebildet. \\
+	
+	URL Parameter:
+	
+	\begin{lstlisting}
+		http://127.0.0.1:8000/a/c/f.html/x/y/z?p=1&q=2
+		
+		request.args = ['x', 'y', 'z']
+		request.vars = {'p':1, 'q':2}
+		
+		request.application = 'a'
+		request.controller = 'c'
+		request.function = 'f'
+		
+	\end{lstlisting}
+
+	
+	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Vergleich Konfiguration, Routing}
