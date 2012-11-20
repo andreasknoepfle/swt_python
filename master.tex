@@ -300,23 +300,40 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
         \item Ming (TurboGears)
     \end{itemize}
  
-  
+  \begin{block}{Bemerkung}
+     Full-Stack Frameworks haben entweder eigenes ORM 	oder ermöglichen den Einsatz von \textit{SQLAlchemy} oder \textit{SQLObject}.
+  \end{block}
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Persistenz in Django}
-	\begin{lstlisting}
-	 from django.db import models
-    class Item(models.Model):
-    	name = models.CharField(max_length=60)
-   		created = models.DateTimeField(auto_now_add=True)
-    	priority = models.IntegerField(default=0)
-    	difficulty = models.IntegerField(default=0)
-    	done = models.BooleanField(default=False)
-    \end{lstlisting}
+  \frametitle{Persistenz Beispiel Django}
+  
+\begin{lstlisting}
+from django.db import models
+    
+class Employee(models.Model):
+   name = models.CharField(max_length=60)
+   boss = models.BooleanField(default=False)
+   concern = models.ForeignKey(Project)
+
+class Concern(models.Model):   
+   name = models.CharField(max_length=40)
+\end{lstlisting}
+  
+\begin{lstlisting}
+
+concern = Concern.objects.create(name="Musterfirma")
+Employee.objects.create(name="Mustermann", concern=concern)
+	
+# Alle Mitarbeiter des Konzerns zum Chef machen
+Employee.objects.filter(concern=concern).update(boss=True) 
+\end{lstlisting}
+  
   
 \end{frame}
+
+
 
 \begin{frame}
   \frametitle{Templates, I18N, L10N}
