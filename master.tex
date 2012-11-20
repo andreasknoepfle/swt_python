@@ -429,10 +429,32 @@ web2py
 		
 	\end{lstlisting}
 
-	
-	
 \end{frame}
 
+\begin{frame}[fragile]
+
+\frametitle{Konfiguration, Routing}
+Pylons:
+
+\begin{lstlisting}
+	config.add_route('idea', 'ideas/{idea}')
+	config.add_route('user', 'users/{user}')
+	config.add_route('tag', 'tags/{tag}')
+
+	config.add_view('mypackage.views.idea_view', 					route_name='idea')
+	config.add_view('mypackage.views.user_view', 					route_name='user')
+	config.add_view('mypackage.views.tag_view', 						route_name='tag')
+\end{lstlisting}
+
+Requests:
+
+\begin{lstlisting}
+/ideas/{idea}
+/users/{user}
+/tags/{tag}
+\end{lstlisting}
+	
+\end{frame}
 
 \begin{frame}
 	\frametitle{Vergleich Konfiguration, Routing}
@@ -517,6 +539,10 @@ http://www.infoworld.com/d/application-development/pillars-python-six-python-web
 http://wiki.python.org/moin/WebFrameworks
 http://wiki.python-forum.de/Web-Frameworks
 http://blog.ianbicking.org/turbogears-and-pylons.html
+http://web2py.com/book/default/chapter/04
+http://turbogears.org/2.0/docs
+https://docs.djangoproject.com/en/
+http://docs.pylonsproject.org/projects/pyramid/en/1.4-branch/
 \end{frame}
 
 
