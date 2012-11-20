@@ -12,7 +12,7 @@
 
 \usepackage{color} % für Farben im allgemeinen
 \usepackage{colortbl}% für die Hintergrundfarbe einzelner Zellen in Tabellen
-\usepackage{listings,bera}
+\usepackage{listings}
 \definecolor{keywords}{RGB}{255,0,90}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -24,8 +24,8 @@ commentstyle=\color{dkgreen},
  stringstyle=\color{mauve},
  breakatwhitespace=true,
  backgroundcolor=\color{backgroundc},
- frame=single, 
-emph}
+ frame=single
+ }
 
 \usetheme{BerlinFU}
 
@@ -285,25 +285,38 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
 
 \begin{frame}
   \frametitle{Persistenz}
-  \begin{itemize}[<1->]
-    \item SQL ORM
-    \begin{itemize}
+ 
+    SQL-ORMs
+    \begin{itemize}[<1->]
         \item Django built-in ORM (Django)
-        \item SQLAlchemy (Grok,Pylons,Zope)
-        \item Storm (Grok )
+        \item SQLAlchemy (Pylons) %Gork,Zope
+        % \item Storm (Grok )
         \item SQLObject (Pylons,TurboGears)
         \item DAL (web2py)
      \end{itemize}
-    \item MongoDB ORM
+     MongoDB ORMs
     \begin{itemize}[<1->]
         \item Django MongoDB Engine (Django)
         \item Ming (TurboGears)
     \end{itemize}
-    \item ...
-  \end{itemize}
+ 
+  
 
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Persistenz in Django}
+	\begin{lstlisting}
+	 from django.db import models
+    class Item(models.Model):
+    	name = models.CharField(max_length=60)
+   		created = models.DateTimeField(auto_now_add=True)
+    	priority = models.IntegerField(default=0)
+    	difficulty = models.IntegerField(default=0)
+    	done = models.BooleanField(default=False)
+    \end{lstlisting}
+  
+\end{frame}
 
 \begin{frame}
   \frametitle{Templates, I18N, L10N}
