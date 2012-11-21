@@ -5,35 +5,57 @@
     t,
     smaller,
     compress,
+    xcolor=svgnames,            %~ named colors
     %~ draft
 ]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
-\usepackage{color} % für Farben im allgemeinen
-\usepackage{colortbl}% für die Hintergrundfarbe einzelner Zellen in Tabellen
 \usepackage{listings}
-\definecolor{keywords}{RGB}{255,0,90}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{backgroundc}{rgb}{0.95,0.95,0.95}
+
+% --- Farbdefinitionen ---------------------------------------------------------
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+% Solarized palette (modified)
+\definecolor{solarized@base03}{HTML}{002B36}
+\definecolor{solarized@base02}{HTML}{073642}
+\definecolor{solarized@base01}{HTML}{384ea5}
+\definecolor{solarized@base00}{HTML}{657b83}
+\definecolor{solarized@base0}{HTML}{839496}
+\definecolor{solarized@base1}{HTML}{93a1a1}
+\definecolor{solarized@base2}{HTML}{EEE8D5}
+\definecolor{solarized@base3}{HTML}{FDF6E3}
+\definecolor{solarized@yellow}{HTML}{754900}
+\definecolor{solarized@orange}{HTML}{CB4B16}
+\definecolor{solarized@red}{HTML}{DC322F}
+\definecolor{solarized@magenta}{HTML}{D33682}
+\definecolor{solarized@violet}{HTML}{6C71C4}
+\definecolor{solarized@blue}{HTML}{268BD2}
+\definecolor{solarized@cyan}{HTML}{0A8178}
+\definecolor{solarized@green}{HTML}{657900}
+
 \lstset{language=Python,
-basicstyle=\footnotesize, 
-keywordstyle=\color{keywords},
-commentstyle=\color{dkgreen},
- stringstyle=\color{mauve},
- breakatwhitespace=true,
- backgroundcolor=\color{backgroundc},
- frame=single
- }
+  basicstyle=\ttfamily,
+  numberstyle=\tiny\color{solarized@base01},
+  keywordstyle=\color{solarized@green},
+  stringstyle=\color{solarized@cyan},
+  identifierstyle=\color{solarized@base03},
+  commentstyle=\color{solarized@base01},
+  emphstyle=\color{solarized@red},
+  procnamestyle=\color{solarized@blue}\textbf,
+  backgroundcolor=\color{White},
+  rulesepcolor=\color{solarized@base1},
+  tabsize=4,
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  extendedchars=true%
+}
+\lstdefinestyle{Java} {language=Java}
 
 \usetheme{BerlinFU}
-
-
-% --- Farbdefinitionen ----------------------------------------
-%\definecolor{red}{rgb}{1,0,0}
-%\definecolor{orange}{rgb}{0.5,0.5,0}
-%\definecolor{green}{rgb}{0,1,0}
+\setbeamercolor{postit}{fg=black, bg=solarized@base3}
 
 %~ \usefonttheme{professionalfonts}
 %~ \usepackage[noae]{Sweave}
@@ -65,12 +87,19 @@ commentstyle=\color{dkgreen},
 \setbeamercolor{framesource}{fg=gray}
 \setbeamerfont{framesource}{size=\footnotesize}
 
+
+%%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\source}[1]{
     \vspace{-4pt}
     \begin{beamercolorbox}[ht=4pt,right]{framesource}
         \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} Quelle: {#1}
     \end{beamercolorbox}
 }
+
+%% POSTIT
+\newenvironment{beamerpostit}[1]%%
+{\begin{beamercolorbox}[wd=\textwidth,sep=2pt,rounded=true,shadow=true]{postit} #1}%
+{\end{beamercolorbox}}%
 
 
 \defbeamertemplate*{section in toc}{my theme}
@@ -84,7 +113,7 @@ commentstyle=\color{dkgreen},
 
 
 %%% Formatting table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{booktabs, colortbl, tabularx}
+\usepackage{booktabs, colortbl, tabularx}
 
 
 %% PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -153,21 +182,6 @@ commentstyle=\color{dkgreen},
   %~ roter Faden
 \end{frame}
 
-\begin{frame}
-	
-	\frametitle{Farbdeutung bei Vergleichen}
-	
-	\begin{table}[h]
-		\begin{tabular}{|c|}
-			\hline
-			 \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
-		  	\cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ \hline 
-		  	\cellcolor{red} nicht optimale Lösung \\ \hline 
-		 \end{tabular}
-	\end{table}
-	
-\end{frame}
-
 
 \section{Python~-- Programmiersprache fürs Web?}
 \begin{frame}
@@ -215,11 +229,12 @@ commentstyle=\color{dkgreen},
     \end{itemize}
     %\item Dynamische Programmiersprache
    % Python-Interpreter mit interaktiven Modus
-    \item objektorientierte, aspektorientierte und funktionale Programmierung
+    \item Multiparadigmen-Sprache (primär OOP, funktional, AOP)
     \item dynamische Datentypen, garbage collection
     \item große, umfangreiche Standardbibliothek “batteries included”
   \end{itemize}
 
+ %~ The Zen of Python http://www.python.org/dev/peps/pep-0020/
  %~ http://brainsik.theory.org/.:./2009/why-reddit-uses-python
  %~ http://www.quora.com/Quora-Infrastructure/Why-did-Quora-choose-Python-for-its-development
 
@@ -227,10 +242,67 @@ commentstyle=\color{dkgreen},
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Python~-- Programmiersprache fürs Web?}
+%\begin{frame}
+%
+%  \hspace{12pt}
+%  \makebox[\textwidth][c]{%
+%    \begin{minipage}[c]{0.85\columnwidth}
+%      \resizebox{\linewidth}{!}{PEP 8}
+%    \end{minipage}
+%  }
+%  %~ coding conventions
+%
+%\end{frame}
 
-  eventl. Codebeispiele, Gegenüberstellungen, Erklärung
+
+%~ Codebeispiele
+%~ Gegenüberstellungen mit schon behandelten Sprachen
+\subsection{Codebeispiele/Gegenüberstellungen}
+\begin{frame}[fragile]
+  \frametitle{Syntaxvergleich zu Java}
+  \vspace{-12pt}
+
+  \begin{columns}[T]
+    \begin{column}{.8\textwidth}<1->
+      \begin{lstlisting}[style=Java]
+int value = 0;
+String title = String.valueOf(value);
+if ("0".equals(title)) {
+    throw new Exception("Error");
+}
+for (int i = 1; i < 10; i++) {
+    System.out.printf("row %s", i);
+}
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.2\textwidth}<1->
+      \begin{figure}
+        \includegraphics[height=25mm]{java_logo.png}
+        \source{[\ref{illu:2}]}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \vspace{12pt}
+
+  \begin{columns}[T]
+    \begin{column}{.8\textwidth}<1->
+      \begin{lstlisting}
+value = 0
+title = str(value)
+if title == "0":
+    raise Exception("Error")
+for i in range(1, 10):
+    print "row {}".format(i)
+      \end{lstlisting}
+    \end{column}
+        \begin{column}{.2\textwidth}<1->
+      \begin{figure}
+        \includegraphics[height=25mm,trim=0 0 1500px 0]{python_logo_2006.png}
+        \source{[\ref{illu:2}]}
+      \end{figure}
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
@@ -254,20 +326,23 @@ commentstyle=\color{dkgreen},
 
 \section{Webframeworks für Python}
 \begin{frame}
-  \frametitle{Webframeworks für Python}
-  	 Full-Stack Frameworks
-  		\begin{itemize}[<1->]
-  			\item Django
-  			\item TurboGears 
-  			\item web2py
-  			\item Pylons/Pyramid
-  		\end{itemize}
-  		 Microframeworks
-  		\begin{itemize}[<1->]
-  			\item Bottle
-  			\item CherryPy
-  		\end{itemize}
-  
+  \frametitle{Webframeworks für Python (Auswahl)}
+  %~ TODO add logos
+     Full-Stack Frameworks
+        \begin{itemize}[<1->]
+            \item Django
+            \item TurboGears
+            \item web2py
+            \item Pylons/Pyramid
+            \item \dots
+        \end{itemize}
+         Microframeworks
+        \begin{itemize}[<1->]
+            \item Bottle
+            \item CherryPy
+            \item \dots
+        \end{itemize}
+
 % , Other Full-Stack Frameworks, Basic Frameworks
 % * Django\\
 % * CherryPy, CubicWeb, Flask, Grok, Plone, Pylons, %Pyramid, TurboGears, web2py, Zope 2\\
@@ -276,16 +351,72 @@ commentstyle=\color{dkgreen},
 \end{frame}
 
 
+\subsection{Django}
+\begin{frame}
+  \frametitle{Django}
+
+  \begin{beamerpostit}
+    \begin{quote}
+      “The web framework for perfectionists with deadlines”
+    \end{quote}
+  \end{beamerpostit}
+
+  \vspace{12pt}
+  \begin{tikzpicture}[scale=0.88] % timeline 2003-2012->
+    % define coordinates (begin, used, end, arrow)
+    \foreach \x in {2003,2005,2008,2012,2013}{
+        \pgfmathsetlength\yearposx{(\x-2003)*1cm};
+        \coordinate (y\x)   at (\yearposx,0);
+        \coordinate (y\x t) at (\yearposx,+3pt);
+        \coordinate (y\x b) at (\yearposx,-3pt);
+    }
+
+    % draw horizontal line with arrow
+    \draw [->] (y2003) -- (y2013);
+
+    % draw ticks
+    \foreach \x in {2003,2008,2012}
+        \draw (y\x t) -- (y\x b);
+
+    % annotate (draw nodes)
+    \foreach \x in {2003,2005,2008,2012}
+        \node at (y\x) [below=3pt] {\x};
+
+    \fill (y2005) circle (3pt) node[above=3pt] {0.9};
+    \fill (y2008) circle (3pt) node[above=3pt] {1.0};
+    \fill (y2012) circle (3pt) node[above=3pt] {1.4.2};
+  \end{tikzpicture}
+  \vspace{12pt}
+
+  %~ Some well known sites that use Django include Pinterest, Instagram, Mozilla,
+  %~ The Washington Times and the Public Broadcasting Service.
+
+\end{frame}
+
+
+\subsection{Vergleichskriterien}
 \begin{frame}
 Hauptteil:\\
-Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
+Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
 (konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
+
+    \frametitle{Farbdeutung bei Vergleichen}
+
+    \begin{table}[h]
+        \begin{tabular}{|c|}
+            \hline
+             \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
+            \cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ \hline
+            \cellcolor{red} nicht optimale Lösung \\ \hline
+         \end{tabular}
+    \end{table}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Persistenz}
- 
+
     \textbf{SQL-ORMs}
     \begin{itemize}[<1->]
         \item Django built-in ORM (Django)
@@ -293,78 +424,82 @@ Vor- und Nachteile einiger weniger Frameworks aufgezeigen\\
         % \item Storm (Grok )
         \item SQLObject (Pylons,TurboGears)
         \item DAL (web2py)
+        \item \dots
      \end{itemize}
      \textbf{MongoDB ORMs}
     \begin{itemize}[<1->]
-        \item Django MongoDB Engine (Django)
+        \item MongoDB Engine (Django)
         \item Ming (TurboGears)
     \end{itemize}
- 
-  \begin{block}{Bemerkung}
-     Full-Stack Frameworks haben entweder eigenes ORM 	oder ermöglichen den Einsatz von \textit{SQLAlchemy} oder \textit{SQLObject}.
-  \end{block}
+
+  \vspace{12pt}
+  \begin{beamerpostit}
+     Full-Stack Frameworks haben entweder eigenes ORM oder ermöglichen den Einsatz von \textit{SQLAlchemy} oder \textit{SQLObject}.
+  \end{beamerpostit}
 
 \end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Persistenz Beispiel Django}
-  
+
 \begin{lstlisting}
 from django.db import models
-    
+
 class Employee(models.Model):
    name = models.CharField(max_length=60)
    boss = models.BooleanField(default=False)
-   concern = models.ForeignKey(Project)
+   concern = models.ForeignKey(Concern)
 
-class Concern(models.Model):   
+class Concern(models.Model):
    name = models.CharField(max_length=40)
 \end{lstlisting}
-  
+\hrule
 \begin{lstlisting}
-
 concern = Concern.objects.create(name="Musterfirma")
 Employee.objects.create(name="Mustermann", concern=concern)
-	
-# Alle Mitarbeiter des Konzerns zum Chef machen
-Employee.objects.filter(concern=concern).update(boss=True) 
-\end{lstlisting}
-  
-  
-\end{frame}
 
+# Alle Mitarbeiter des Konzerns zum Chef machen
+Employee.objects.filter(concern=concern).update(boss=True)
+\end{lstlisting}
+
+\end{frame}
 
 
 \begin{frame}
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
   \begin{itemize}[<1->]
-  	\item Text-basiert:
+    \item Text-basiert:
         \begin{itemize}[<1->]
             \item Django template language
-            \item Cheetah 
+            \item Cheetah
             \item Mako (füher Myghty)
             \item Jinja2
         \end{itemize}
     \item XML-basiert:
-    	\begin{itemize}[<1->]
-    		\item Genshi
+        \begin{itemize}[<1->]
+            \item Genshi
             \item SimpleTAL
         \end{itemize}
   \end{itemize}
-  \begin{block}{Bemerkung}
-    Es gibt noch sehr viel mehr Template-Engines. \\
-    (siehe http://wiki.python.org/moin/Templating)
-  \end{block}
+
+  \vspace{12pt}
+  \begin{beamerpostit}
+    Es gibt noch sehr viel mehr Template-Engines
+    (siehe~\url{http://wiki.python.org/moin/Templating})
+  \end{beamerpostit}
+
 \end{frame}
 
+
 \begin{frame}[fragile]
-	\frametitle{Templates}
-	\framesubtitle{Django template language}
-	 \begin{itemize}[<1->]
-	 	\item Template-Inheritance
-	 	\item Unterstüzt Filter und Kontrollstrukturen
-	 \end{itemize}
+    \frametitle{Templates}
+    \framesubtitle{Django template language}
+     \begin{itemize}[<1->]
+        \item Template-Inheritance
+        \item Unterstüzt Filter und Kontrollstrukturen
+     \end{itemize}
 \begin{lstlisting}
 <body>
     <div id="content">
@@ -372,23 +507,25 @@ Employee.objects.filter(concern=concern).update(boss=True)
     </div>
 </body>
 \end{lstlisting}
+\hrule
 \begin{lstlisting}
 {% extends "base.html" %}
 
 {% block content %}
-    Inhalt: {{ content }} 
+    Inhalt: {{ content }}
 {% endblock %}
 \end{lstlisting}
 \end{frame}
 
+
 \begin{frame}[fragile]
-	\frametitle{Templates}
-	\framesubtitle{Cheetah}
-	 \begin{itemize}[<1->]
-	 	\item Wird von allen Full-Stack-Frameworks unterstützt
-	 	\item Große und aktive Community
-	 	\item Templates können von Python-Klassen abgeleitet werden
-	 \end{itemize}
+    \frametitle{Templates}
+    \framesubtitle{Cheetah}
+     \begin{itemize}[<1->]
+        \item Wird von allen Full-Stack-Frameworks unterstützt
+        \item Große und aktive Community
+        \item Templates können von Python-Klassen abgeleitet werden
+     \end{itemize}
 \begin{lstlisting}
 <table>
    #for $client in $clients
@@ -401,6 +538,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \end{lstlisting}
 \end{frame}
 
+
 \begin{frame}
   \frametitle{I18N und L10N}
   \begin{itemize}[<1->]
@@ -408,93 +546,98 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \end{itemize}
 \end{frame}
 
+
 \begin{frame}
   \frametitle{Konfiguration, Routing}
-	Django
-  	\begin{itemize}[<1->]
-    	\item URLconf (URL Konfiguration)
-    	\item einfaches Mapping zwischen URL-Patterns (Regex)
-    	\item Wenn der Ausdruck passt, ruft Django den View auf
-    	\item settings.py für alle weiteren Konfigurationen
-    	\begin{itemize}[<1->]
-    		\item Datenbankeinstellungen
-    		\item E-Mail und Fehlermeldungseinstellungen
-    		\item i18n und URL Einstellungen
-    		\item Applikations and Middleware Einstellungen
-    	\end{itemize}
-  	 \end{itemize}
-  	 
+    Django
+    \begin{itemize}[<1->]
+        \item URLconf (URL Konfiguration)
+        \item einfaches Mapping zwischen URL-Patterns (Regex)
+        \item Wenn der Ausdruck passt, ruft Django den View auf
+        \item settings.py für alle weiteren Konfigurationen
+        \begin{itemize}[<1->]
+            \item Datenbankeinstellungen
+            \item E-Mail und Fehlermeldungseinstellungen
+            \item i18n und URL Einstellungen
+            \item Applikations and Middleware Einstellungen
+        \end{itemize}
+     \end{itemize}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Konfiguration, Routing}
 TurboGears
-  	 \begin{itemize}[<1->]
-    	\item Object Dispatch, und built in Routes Integration
-    	\item kann überschrieben werden
- 	\end{itemize}
-\end{frame}  
+     \begin{itemize}[<1->]
+        \item Object Dispatch, und built in Routes Integration
+        \item kann überschrieben werden
+    \end{itemize}
+\end{frame}
+
+
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel Django}
 \begin{lstlisting}
-urlpatterns = patterns('',
-	(r'^articles/2003/$','news.views.special_case_2003'),
-	(r'^articles/(\d{4})/$','news.views.year_archive'),
-	(r'^articles/(\d{4})/(\d{2})/$','news.views.month_archive'),
-	(r'^articles/(\d{4})/(\d{2})/(\d+)/$','news.views.article_detail'),
+urlpatterns = patterns('news.views',
+    (r'^articles/2003/$', 'special_case_2003'),
+    (r'^articles/(\d{4})/$', 'year_archive'),
+    (r'^articles/(\d{4})/(\d{2})/$', 'month_archive'),
+    (r'^articles/(\d{4})/(\d{2})/(\d+)/$', 'article_detail'),
 )
 \end{lstlisting}
-	Requests:
-	\begin{lstlisting}
-		/articles/2005/03/		=> month_archive(request,'2005','03')
-		/articles/2005/3/		=> no match
-		/articles/2003/			=> special_case_2003(request,'2003')
-		/articles/2003			=> no match
-		/articles/2003/03/03/	=> article_detail(request,'2003','03','03')
-	\end{lstlisting}
+\hrule
+\begin{lstlisting}
+/articles/2005/03/     => month_archive(request,'2005','03')
+/articles/2005/3/      => no match
+/articles/2003/        => special_case_2003(request,'2003')
+/articles/2003         => no match
+/articles/2003/03/03/  => article_detail(request,'2003','03','03')
+    \end{lstlisting}
 \end{frame}
+
+
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel TurboGear 2.0}
-\begin{lstlisting}	
-		def setup_routes(self):
-		
-		map = Mapper(directory=config['pylons.paths']['controllers'],
-		            always_scan=config['debug'])
-		
-		# Setup a default route for the root of object dispatch
-		map.connect('*url',controller='root', action='routes_placeholder')
+\begin{lstlisting}
+def setup_routes(self):
+    map = Mapper(
+        directory=config['pylons.paths']['controllers'],
+        always_scan=config['debug'])
 
-		config['routes.map'] = map
+    # Setup a default route for the root of object dispatch
+    map.connect('*url', controller='root',
+        action='routes_placeholder')
+    config['routes.map'] = map
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Vergleich Konfiguration, Routing}
-	
-	
-	\begin{table}[h]
-		\begin{tabular}{|c|c|c|}
-			\hline
-			 & Django & TurboGear 2.0  \\ \hline
-		  	Konfiguration &  &  \\ \hline
-		  	Routing & \cellcolor{orange} mächtig, evtl. Overload & \cellcolor{green} einfach,anpassbar	   \\ \hline
-		 \end{tabular}
-	\end{table}
+    \frametitle{Vergleich Konfiguration, Routing}
 
-	
+    %~ Quelle, für Overload bei Django? Theorie?
+    \begin{table}[h]
+        \begin{tabular}{|c|c|c|}
+            \hline
+             & Django & TurboGear 2.0  \\ \hline
+            Konfiguration &  &  \\ \hline
+            Routing & \cellcolor{orange} mächtig, evtl. Overload & \cellcolor{green} einfach,anpassbar     \\ \hline
+         \end{tabular}
+    \end{table}
+
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Formulare, Validierung}
-  
+
   \begin{itemize}[<1->]
     \item django.forms
-	 \begin{itemize}[<1->]
-		\item HTML form widget
-		\item Field validation
-		\item ...
-	\end{itemize}
+     \begin{itemize}[<1->]
+        \item HTML form widget
+        \item Field validation
+        \item ...
+    \end{itemize}
   \end{itemize}
 
 \end{frame}
@@ -502,7 +645,7 @@ urlpatterns = patterns('',
 
 \begin{frame}
   \frametitle{Sicherheitmechanismen}
-  
+
   \begin{itemize}[<1->]
     \item django: http://www.djangobook.com/en/2.0/chapter20.html
     \end{itemize}
@@ -536,6 +679,22 @@ urlpatterns = patterns('',
 
 
 \begin{frame}
+  \frametitle{Quellen}
+
+  {\footnotesize
+  \begin{itemize}[<1->]
+    \item \url{http://www.infoworld.com/d/application-development/pillars-python-six-python-web-frameworks-compared-169442}
+    \item \url{http://wiki.python.org/moin/WebFrameworks}
+    \item \url{http://wiki.python-forum.de/Web-Frameworks}
+    \item \url{http://blog.ianbicking.org/turbogears-and-pylons.html}
+  \end{itemize}
+
+  alle URLs aufgerufen am 20. November 2012.
+  }
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Quellen der Abbildungen}
   \footnotesize
   \begin{enumerate}[<1->]
@@ -546,28 +705,13 @@ urlpatterns = patterns('',
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Quellen}
-http://www.infoworld.com/d/application-development/pillars-python-six-python-web-frameworks-compared-169442
-http://wiki.python.org/moin/WebFrameworks
-http://wiki.python-forum.de/Web-Frameworks
-http://blog.ianbicking.org/turbogears-and-pylons.html
-\end{frame}
-
-
+%~ Letzte Folie: einprägsame Botschaft
 \begin{frame}
     \frametitle{Ende der Präsentation}
+    %~ Vielen Dank für die Aufmerksamkeit.
+    %~ offene Fragen?/Diskussion, sowie Kritik/Anregungen
     \LARGE
-    \begin{itemize}[<1->]
-        \item Vielen Dank für Ihre Aufmerksamkeit.
-        \item
-        \item offene Fragen?
-        \item Diskussion
-        \begin{itemize}[<1->]
-          \Large
-          \item Kritik, Anregungen
-        \end{itemize}
-    \end{itemize}
+
 \end{frame}
 
 \end{document}
