@@ -14,7 +14,7 @@
 \usepackage{listings}
 
 % --- Farbdefinitionen ---------------------------------------------------------
-\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
 % Solarized palette (modified)
 \definecolor{solarized@base03}{HTML}{002B36}
 \definecolor{solarized@base02}{HTML}{073642}
@@ -126,6 +126,11 @@
 %~ Anzahl Folien: pro Folie solltet ihr mindestens 90s einplanen
 %~
 %~ Übergänge roter Faden
+%~
+%~ Konzept Vortrag
+
+%~ TODO
+%~ Eventuell Python Handout
 
 
 %~ \begin{frame}
@@ -173,6 +178,10 @@
   Stichpunkte:\\
    - In Python geschriebene Webframework gibt es wie „Sand am Meer“\\
    - Warum? Einblick gibt unser Vortrag\\
+
+  %~ Größe spiegelt „Machtverhältnisse“ da
+  %~ Einige werdet ihr im Laufe des Vortrages kennenlernen
+  %~ Hat jemand schon von einem Webframework für Python gehört?
 \end{frame}
 
 
@@ -347,7 +356,7 @@ for i in range(1, 10):
 % * Django\\
 % * CherryPy, CubicWeb, Flask, Grok, Plone, Pylons, %Pyramid, TurboGears, web2py, Zope 2\\
 % * Bottle, Karrigell, Nagare, Pyjamas, Quixote, Spyce, %Tornado, TwistedWeb, Web.py\\
-% * Nicht mehr aktiv: BlueBream, Nevow, Webware\\
+% * Nicht mehr aktiv: Albatross, BlueBream, Nevow, Webware\\
 \end{frame}
 
 
@@ -660,120 +669,144 @@ def setup_routes(self):
   \frametitle{Extras: WebServices, Caching, Tests}
 \end{frame}
 
+
+\section{noch mehr Frameworks ;-)}
+
+%~ Why use microframework?
+%~ Single Codebases are great
+%~ Single codebases are EVIL!
+%~ http://pydanny-event-notes.readthedocs.org/en/latest/DjangoConEurope2012/flasky-goodness-or-why-django-sucks.html
+
 \begin{frame}
+  \frametitle{Flask}
+  %~ http://www.slideshare.net/trustrachel/django-vs-flask
 
-	\begin{columns}[T]
-	
-    		\begin{column}{.3\textwidth}<1->
-			\begin{figure}
-        			\includegraphics[width=25mm]{flask_logo.png}
-        			\source{[\ref{illu:3}]}
-    			\end{figure}
-    			
-    			"...microframework for Python based on Werkzeug, Jinja 2 and good intentions..."
-    		\end{column}
-    		
+  \vspace{-4pt}
+  \begin{beamerpostit}
+    \begin{quote}
+      “\dots microframework for Python based on Werkzeug, Jinja2 and good intentions\dots”
+    \end{quote} %~ FIXME Quelle
+  \end{beamerpostit}
 
-    		\begin{column}{.7\textwidth}<1->
-    		\vspace{100px}
-    		\begin{itemize}[<1->]
-    			\item Was kann/ist Flask ?
-     		\begin{itemize}[<1->]
-        			\item Entwicklungsserver and Debugger
-        			\item Unittesting wird unterstützt
-        			\item RESTful
-        			\item Benutzt Jinja2 als Template-Sprache
-        			\item Secure-Cookies
-        			\item WSGI 1.0 konform
-    			\end{itemize}
-  		\end{itemize}
-  		
-    		\end{column}
-    		
-    	\end{columns}
+    \begin{columns}<1->
+            \begin{column}{.6\textwidth}<1->
+            \begin{itemize}[<1->]
+                    \item Flexibilität für Entwickler%
+                    % wenig Einschränkungen/Vorschriften bei Quelltext
+                    % Anwendungsarchitektur nach eigenem Geschmack
+                    % freie Komponentenwahl, keine überflüssigen Komponenten
+                    \item Entwicklungsserver und Debugger
+                    \item Unittest-Unterstützung
+                    \item RESTful
+                    \item Template-Sprache Jinja2
+                    %\item Secure-Cookies
+                    %\item WSGI 1.0 konform
+                    \item inspiriert von Sinatra (Ruby)
+            \end{itemize}
+            \end{column}
+
+    \begin{column}{.4\textwidth}<1->
+            \begin{figure}
+                    \includegraphics[width=\textwidth]{flask_logo.png}
+                    \source{[\ref{illu:3}]}
+                \end{figure}
+            \end{column}
+
+        \end{columns}
 \end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Flask}
-  hello.py:
+  \framesubtitle{Minimalbeispiel einer Webanwendung}
+
+  \vspace{-12pt}
+  \begin{lstlisting}[title=hello.py]
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run()
+  \end{lstlisting}
+  \hrule
   \begin{lstlisting}
-  
-  from flask import Flask
-	app = Flask(__name__)
-
-	@app.route('/')
-	def hello_world():
-    		return 'Hello World!'
-
-	if __name__ == '__main__':
-    		app.run()
-    		
-    	\end{lstlisting}
-    	\hrule
-    	\begin{lstlisting}
-    		$ python hello.py
- 		* Running on http://127.0.0.1:5000/
-    	\end{lstlisting}
+$ python hello.py
+* Running on http://127.0.0.1:5000/
+  \end{lstlisting}%~$
 \end{frame}
+
 
 \begin{frame}
-	
-	\begin{columns}[T]
-	
-    		\begin{column}{.3\textwidth}<1->
-			\begin{figure}
-        			\includegraphics[width=25mm]{tornado_logo.png}
-        			\source{[\ref{illu:4}]}
-    			\end{figure}
-    			
-    			"...FriendFeed’s web server is a relatively simple, non-blocking web server written in Python...Tornado is an open source version of this web server and some of the tools we use most often at FriendFeed..."
-    		\end{column}
-    		
 
-    		\begin{column}{.7\textwidth}<1->
-    		\vspace{100px}
-    		\begin{itemize}[<1->]
-    			\item Was kann/ist Tornado ?
-     		\begin{itemize}[<1->]
-        			\item Python Web-Framework und Web-Server
-        			\item Große Anzahl stehender Verbindungen
-				\item https://github.com/facebook/tornado/wiki/Links
-    			\end{itemize}
-  		\end{itemize}
-  		
-    		\end{column}
-    		
-    	\end{columns}
+  \frametitle{Tornado}
+  %~ http://developers.facebook.com/blog/post/301/
+  %~ http://news.cnet.com/8301-17939_109-10349836-2.html
+
+  \vspace{-4pt}
+  \begin{beamerpostit}
+    \begin{quote}
+      “\dots FriendFeed’s web server is a relatively simple, non-blocking web
+      server written in Python\dots Tornado is an open source version of this web
+      server and some of the tools we use most often at FriendFeed\dots”
+    \end{quote} %~ FIXME Quelle
+  \end{beamerpostit}
+
+    \begin{columns}<1->
+            \begin{column}{.6\textwidth}<1->
+            \begin{itemize}[<1->]
+                \item Webframework und Webserver für Python
+                \item Große Anzahl gleichzeitiger Verbindungen
+            \end{itemize}
+
+            \end{column}
+            \begin{column}{.4\textwidth}<1->
+            \begin{figure}
+                    \includegraphics[width=\textwidth]{tornado_logo.png}
+                    \source{[\ref{illu:4}]}
+                \end{figure}
+            \end{column}
+
+        \end{columns}
+
 \end{frame}
+
 
 \begin{frame}
   \frametitle{Tornado Performance}
-    		\vspace{20px}
-			\begin{figure}
-        			\includegraphics[width=110mm]{tornado_stat.png}
-        			\source{[\ref{illu:5}]}
-    			\end{figure}  		
+            \vspace{20px}
+            \begin{figure}
+                    \includegraphics[width=\textwidth]{tornado_stat.png}
+                    \source{[\ref{illu:5}]}
+                \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Tornado Beispiel}
-  hello.py:
-  \begin{lstlisting}
-import tornado.ioloop
-import tornado.web
 
-class MainHandler(tornado.web.RequestHandler):
+\begin{frame}[fragile]
+
+  \frametitle{Tornado}
+  \framesubtitle{Minimalbeispiel einer Webanwendung}
+
+  \vspace{-12pt}
+  \begin{lstlisting}[title=hello.py]
+from tornado import ioloop, web
+
+class MainHandler(web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
-application = tornado.web.Application([
+application = web.Application([
     (r"/", MainHandler),
 ])
 
 if __name__ == "__main__":
     application.listen(8888)
-    tornado.ioloop.IOLoop.instance().start()
-	\end{lstlisting}
+    ioloop.IOLoop.instance().start()
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -825,6 +858,7 @@ run(host='localhost', port=8080)
 
 
 \begin{frame}
+
 	\begin{columns}[T]
 	
     		\begin{column}{.3\textwidth}<1->
@@ -927,17 +961,16 @@ if __name__ == "__main__":
   \footnotesize
   \begin{enumerate}[<1->]
     \item Innenhof Informatik
-        \url{http://www.flickr.com/photos/bennybenny/3597853896/} 		\label{illu:1}
-        
+        \url{http://www.flickr.com/photos/bennybenny/3597853896/}       \label{illu:1}
+
    \item Fask Logo
-        \url{http://flask.pocoo.org/static/logo.png} 					\label{illu:3}
-        
+        \url{http://flask.pocoo.org/static/logo.png}                    \label{illu:3}
+
     \item Tornado Logo
-        \url{http://www.tornadoweb.org/static/tornado.png}				\label{illu:4}
-        
-    \item Tornado Statistik(CNET,Don Reisinger,
-September 10, 2009)
-        \url{http://news.cnet.com/8301-17939_109-10349836-2.html}				\label{illu:5}        
+                \url{http://www.tornadoweb.org/static/tornado.png}              \label{illu:4}
+
+    \item Tornado Statistik (Bret Taylor, 10. September 2009)
+        \url{http://http://developers.facebook.com/blog/post/301/}      \label{illu:5}
         
     \item Bottle Logo
         \url{http://bottlepy.org/docs/dev/_static/logo_nav.png}				\label{illu:6}
@@ -946,7 +979,6 @@ September 10, 2009)
         \url{http://webpy.org/static/webpy.gif}				\label{illu:7}
         
        
-        
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
