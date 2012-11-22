@@ -565,17 +565,6 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Konfiguration, Routing}
-TurboGears
-     \begin{itemize}[<1->]
-        \item Object Dispatch, und built in Routes Integration
-        \item kann überschrieben werden
-    \end{itemize}
-\end{frame}
-
-
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel Django}
 \begin{lstlisting}
@@ -594,6 +583,16 @@ urlpatterns = patterns('news.views',
 /articles/2003         => no match
 /articles/2003/03/03/  => article_detail(request,'2003','03','03')
     \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Konfiguration, Routing}
+TurboGears
+     \begin{itemize}[<1->]
+        \item Object Dispatch, und built in Routes Integration
+        \item kann überschrieben werden
+    \end{itemize}
 \end{frame}
 
 
@@ -620,8 +619,7 @@ def setup_routes(self):
         \begin{tabular}{|c|c|c|}
             \hline
              & Django & TurboGear 2.0  \\ \hline
-            Konfiguration &  &  \\ \hline
-            Routing & \cellcolor{orange} mächtig, evtl. Overload & \cellcolor{green} einfach,anpassbar     \\ \hline
+            Routing & \cellcolor{dkgreen} mächtig & \cellcolor{dkgreen} einfach,anpassbar     \\ \hline
          \end{tabular}
     \end{table}
 
@@ -719,8 +717,63 @@ def setup_routes(self):
 \end{frame}
 
 \begin{frame}
-	\frametitle{Tornado}
+	
+	\begin{columns}[T]
+	
+    		\begin{column}{.3\textwidth}<1->
+			\begin{figure}
+        			\includegraphics[width=25mm]{tornado_logo.png}
+        			\source{[\ref{illu:4}]}
+    			\end{figure}
+    			
+    			"...FriendFeed’s web server is a relatively simple, non-blocking web server written in Python...Tornado is an open source version of this web server and some of the tools we use most often at FriendFeed..."
+    		\end{column}
+    		
 
+    		\begin{column}{.7\textwidth}<1->
+    		\vspace{100px}
+    		\begin{itemize}[<1->]
+    			\item Was kann Tornado ?
+     		\begin{itemize}[<1->]
+        			\item Python Web-Framework und Web-Server
+        			\item Große Anzahl stehender Verbindungen
+
+    			\end{itemize}
+  		\end{itemize}
+  		
+    		\end{column}
+    		
+    	\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tornado Performance}
+    		\vspace{20px}
+			\begin{figure}
+        			\includegraphics[width=110mm]{tornado_stat.png}
+        			\source{[\ref{illu:5}]}
+    			\end{figure}  		
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Tornado}
+  hello.py:
+  \begin{lstlisting}
+import tornado.ioloop
+import tornado.web
+
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello, world")
+
+application = tornado.web.Application([
+    (r"/", MainHandler),
+])
+
+if __name__ == "__main__":
+    application.listen(8888)
+    tornado.ioloop.IOLoop.instance().start()
+	\end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -773,8 +826,14 @@ def setup_routes(self):
         \url{http://www.flickr.com/photos/bennybenny/3597853896/} 		\label{illu:1}
         
    \item Fask Logo
-        \url{http://flask.pocoo.org/static/logo.png} 				\label{illu:3}
+        \url{http://flask.pocoo.org/static/logo.png} 					\label{illu:3}
         
+    \item Tornado Logo
+        \url{http://www.tornadoweb.org/static/tornado.png}				\label{illu:4}
+        
+    \item Tornado Statistik(CNET,Don Reisinger,
+September 10, 2009)
+        \url{http://news.cnet.com/8301-17939_109-10349836-2.html}				\label{illu:5}        
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
