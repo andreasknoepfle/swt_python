@@ -677,7 +677,7 @@ def setup_routes(self):
     		\begin{column}{.7\textwidth}<1->
     		\vspace{100px}
     		\begin{itemize}[<1->]
-    			\item Was kann Flask ?
+    			\item Was kann/ist Flask ?
      		\begin{itemize}[<1->]
         			\item Entwicklungsserver and Debugger
         			\item Unittesting wird unterstützt
@@ -733,11 +733,11 @@ def setup_routes(self):
     		\begin{column}{.7\textwidth}<1->
     		\vspace{100px}
     		\begin{itemize}[<1->]
-    			\item Was kann Tornado ?
+    			\item Was kann/ist Tornado ?
      		\begin{itemize}[<1->]
         			\item Python Web-Framework und Web-Server
         			\item Große Anzahl stehender Verbindungen
-
+				\item https://github.com/facebook/tornado/wiki/Links
     			\end{itemize}
   		\end{itemize}
   		
@@ -756,7 +756,7 @@ def setup_routes(self):
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Tornado}
+  \frametitle{Tornado Beispiel}
   hello.py:
   \begin{lstlisting}
 import tornado.ioloop
@@ -777,19 +777,123 @@ if __name__ == "__main__":
 \end{frame}
 
 \begin{frame}
-	\frametitle{bottle}
+	\begin{columns}[T]
+	
+    		\begin{column}{.3\textwidth}<1->
+			\begin{figure}
+        			\includegraphics[width=25mm]{bottle_logo.png}
+        			\source{[\ref{illu:6}]}
+    			\end{figure}
+    			
+    			"...a fast, simple and lightweight WSGI micro web-framework for Python."
+    		\end{column}
+    		
 
+    		\begin{column}{.7\textwidth}<1->
+    		\vspace{100px}
+    		\begin{itemize}[<1->]
+    			\item Was kann/ist Bottle ?
+     		\begin{itemize}[<1->]
+        			\item Routing - saubere und dynamische URLs
+        			\item Eingebaute Template-Engine (unterstützt auch mako, jinja2 und cheetah)
+        			\item Formular-Daten Zugriff, Dateiuploads, Cookies,...
+        			\item Eingebauter Entwicklungsserver
+        			
+    			\end{itemize}
+  		\end{itemize}
+  		
+    		\end{column}
+    		
+    	\end{columns}
 \end{frame}
 
-\begin{frame}
-	\frametitle{web.py}
+\begin{frame}[fragile]
+  \frametitle{Bottle Beispiel}
 
+  \begin{lstlisting}
+from bottle import route, run, template
+
+@route('/hello/:name')
+def index(name='World'):
+    return template('<b>Hello {{name}}</b>!', name=name)
+
+run(host='localhost', port=8080)
+
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{columns}[T]
+	
+    		\begin{column}{.3\textwidth}<1->
+			\begin{figure}
+        			\includegraphics[width=25mm]{webpy_logo.png}
+        			\source{[\ref{illu:7}]}
+    			\end{figure}
+    			
+    			"...is a web framework for Python that is as simple as it is powerful..."
+    		\end{column}
+    		
+
+    		\begin{column}{.7\textwidth}<1->
+    		\vspace{100px}
+    		\begin{itemize}[<1->]
+    			\item Was kann/ist web.py ?
+     		\begin{itemize}[<1->]
+        			\item ...
+        		\end{itemize}
+  		\end{itemize}
+  		
+    		\end{column}
+    		
+    	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{web.py Beispiel}
+  
+  
+  \begin{lstlisting}
+import web
+        
+urls = (
+    '/(.*)', 'hello'
+)
+app = web.application(urls, globals())
+
+class hello:        
+    def GET(self, name):
+        if not name: 
+            name = 'World'
+        return 'Hello, ' + name + '!'
+
+if __name__ == "__main__":
+    app.run()
+    
+    \end{lstlisting}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Kriterienübersicht}
  * Vergleichstabellen (Django vs. ...)
+
+	\begin{table}[h]
+        \begin{tabular}{|c|c|c|}
+            \hline
+             & Django & TurboGear 2.0  \\ \hline
+			Persistenz &   &      \\ \hline
+			Formulare,Validierung &   &      \\ \hline
+			Templates &   &      \\ \hline
+			Routing &   &      \\ \hline
+            Sicherheitsmechanismen &   &      \\ \hline
+            Bootstrapping,Scaffolding &   &      \\ \hline
+            
+         \end{tabular}
+    \end{table} 
+ 
 \end{frame}
 
 
@@ -834,6 +938,15 @@ if __name__ == "__main__":
     \item Tornado Statistik(CNET,Don Reisinger,
 September 10, 2009)
         \url{http://news.cnet.com/8301-17939_109-10349836-2.html}				\label{illu:5}        
+        
+    \item Bottle Logo
+        \url{http://bottlepy.org/docs/dev/_static/logo_nav.png}				\label{illu:6}
+        
+    \item web.py Logo
+        \url{http://webpy.org/static/webpy.gif}				\label{illu:7}
+        
+       
+        
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
