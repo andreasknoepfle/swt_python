@@ -339,17 +339,20 @@ for i in range(1, 10):
   %~ TODO add logos
      Full-Stack Frameworks
         \begin{itemize}[<1->]
-            \item Django
-            \item TurboGears
+            \item \textbf{Django}
+            \item \textbf{TurboGears}
             \item web2py
             \item Pylons/Pyramid
             \item \dots
         \end{itemize}
          Microframeworks
         \begin{itemize}[<1->]
-            \item Bottle
+            \item \textbf{Bottle}
+            \item \textbf{Tornado}
+            \item \textbf{Flask}
+            \item \textbf{web.py}
             \item CherryPy
-            \item \dots
+    		\item \dots
         \end{itemize}
 
 % , Other Full-Stack Frameworks, Basic Frameworks
@@ -362,7 +365,10 @@ for i in range(1, 10):
 
 \subsection{Django}
 \begin{frame}
-  \frametitle{Django}
+  \begin{figure}
+        			\includegraphics[width=25mm]{django-logo.png}
+        			\source{[\ref{illu:9}]}
+  \end{figure}
 
   \begin{beamerpostit}
     \begin{quote}
@@ -395,8 +401,12 @@ for i in range(1, 10):
     \fill (y2008) circle (3pt) node[above=3pt] {1.0};
     \fill (y2012) circle (3pt) node[above=3pt] {1.4.2};
   \end{tikzpicture}
-  \vspace{12pt}
-
+  \vspace{12pt} \\
+  Wichtige Designprinzipien:
+  \begin{itemize}[<1->]
+  \item Don’t repeat yourself (DRY)
+  \item Explicit is better than implicit
+  \end{itemize}
   %~ Some well known sites that use Django include Pinterest, Instagram, Mozilla,
   %~ The Washington Times and the Public Broadcasting Service.
 
@@ -429,7 +439,7 @@ Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
     \textbf{SQL-ORMs}
     \begin{itemize}[<1->]
         \item Django built-in ORM (Django)
-        \item SQLAlchemy (Pylons) %Gork,Zope
+        \item SQLAlchemy (Pylons,Turbogears) %Gork,Zope
         % \item Storm (Grok )
         \item SQLObject (Pylons,TurboGears)
         \item DAL (web2py)
@@ -450,8 +460,8 @@ Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
 
 
 \begin{frame}[fragile]
-  \frametitle{Persistenz Beispiel Django}
-
+  \frametitle{Persistenz}
+  \framesubtitle{Django}
 \begin{lstlisting}
 from django.db import models
 
@@ -474,18 +484,46 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
-
+  \framesubtitle{Django}
   \begin{itemize}[<1->]
-    \item django.forms
-     \begin{itemize}[<1->]
-        \item HTML form widget
-        \item Field validation
-        \item ...
-    \end{itemize}
+     \item Formulare werden durch die Helperklasse Form erzeugt
+     \item Können aus dem Model abgeleitet werden
+     \item Validatoren werden ebenfalls aus dem Model abgeleitet
   \end{itemize}
+  \begin{lstlisting}
+    from django.forms import ModelForm
+    class EmployeeForm(ModelForm):
+       class Meta:
+          model = Employee
 
+    # Formular erzeugen 
+    form = EmployeeForm()
+
+    # Formular zum editieren erzeugen
+    employee = Employee.objects.get(pk=1)
+    form = EmployeeForm(instance=employee)
+  \end{lstlisting}
+
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Formulare, Validierung}
+  \framesubtitle{Turbogears 2.0}
+  \begin{itemize}[<1->]
+     \item Hier kann DBSprockets verwendet werden
+     \item DBSprockets unterstützt SQLAlchemy
+     \item Funktionsweise analog zu Django
+     \item \textit{Alternative: Sprox, ToscaWidgets}
+  \end{itemize}
+  \begin{lstlisting}
+    from dbsprockets.declaratives import FormBase
+	
+    class EmployeeForm(FormBase):
+        __model__ = Employee
+
+    form = EmployeeForm()
+  \end{lstlisting}
 \end{frame}
 
 
@@ -562,13 +600,43 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \end{frame}
 
 
+\begin{frame}[fragile]
+  \frametitle{I18N und L10N}
+  \framesubtitle{Django}
+  \begin{itemize}[<1->]
+    \item Unterstützt Textübersetzung, Datums-, Zeit und Zahlenformattierung, Zeitzonen und Pluralisierung
+    \item Markieren der Texte mit ugettext
+  \end{itemize}
+  \begin{lstlisting}
+   from django.utils.translation import ugettext as _
+
+   def my_view(request):
+      output = _("Welcome to my site.")
+      return HttpResponse(output)
+  \end{lstlisting}
+  \begin{itemize}[<1->]
+    	\item Werkzeuge zum erstellen neuer Sprachdateien: \\
+ 		\textbf{django-admin.py makemessages -l de}
+  \end{itemize}
+   \begin{lstlisting}
+   #: path/to/python/module.py:23
+   msgid "Welcome to my site."
+   msgstr ""
+   \end{lstlisting}
+\end{frame}
 \begin{frame}
   \frametitle{I18N und L10N}
+  \framesubtitle{Turbogears 2.0}
   \begin{itemize}[<1->]
-    \item gettext
+    \item Internationalisierung mit Python Modul \textit{gettext}
+    \item Funktionsweise analog zu Django
+    \item .po-Sprachdateien können auch mit Hilfsmitteln bearbeitet werden
   \end{itemize}
+  \begin{figure}
+        \includegraphics[height=55mm] {poedit.png}
+        \source{[\ref{illu:8}]}
+      \end{figure}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Routing}
@@ -949,6 +1017,8 @@ if __name__ == "__main__":
     \item \url{http://wiki.python.org/moin/WebFrameworks}
     \item \url{http://wiki.python-forum.de/Web-Frameworks}
     \item \url{http://blog.ianbicking.org/turbogears-and-pylons.html}
+    \item \url{https://docs.djangoproject.com/en/dev/topics/}
+    \item \url{https://docs.djangoproject.com/en/dev/misc/design-philosophies/}
   \end{itemize}
 
   alle URLs aufgerufen am 20. November 2012.
@@ -977,6 +1047,11 @@ if __name__ == "__main__":
         
     \item web.py Logo
         \url{http://webpy.org/static/webpy.gif}				\label{illu:7}
+     \item po-Editor
+        \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}		\label{illu:8}  
+\item Django Logo
+        \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }		
+        \label{illu:9}  
         
        
   \end{enumerate}

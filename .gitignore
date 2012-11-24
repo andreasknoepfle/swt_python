@@ -1,3 +1,5 @@
+*.vrb
+*.pdf
 *.snm
 *.nav
 *.aux
