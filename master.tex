@@ -6,6 +6,7 @@
     smaller,
     compress,
     xcolor=svgnames,            %~ named colors
+    table,
 ]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -152,6 +153,16 @@
     %~ \end{column}
   %~ \end{columns}
 %~ \end{frame}
+
+
+%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%~ don't span the whole text width in the bibliography.
+\usepackage[style=alphabetic]{biblatex}
+%~ expects reference database file named "references.bib"
+\bibliography{references}
+\DeclareFieldFormat{formaturl}{\iffieldundef{url}{}{\newline #1}}
+\renewbibmacro{url+urldate}{\printtext[formaturl]{\printfield{url}}}
 
 
 \newlength\yearposx
@@ -318,6 +329,36 @@ for i in range(1, 10):
     \end{column}
   \end{columns}
 
+  %~ * Development style issues
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Softwarequalität im Plattformvergleich}
+
+  \rowcolors{1}{white}{solarized@base3}
+  \begin{table}[h]
+    \begin{tabular}{|l||c|c|c|}
+     \hline
+      Eigenschaft          & \cellcolor{dkgreen} + & \cellcolor{yellow} & \cellcolor{red} - \\ \hline \hline
+
+      Aufwand   & \textbf{Python} & Ruby & Java, PHP  \\ \hline
+      Lesbarkeit           & \textbf{Python} & Ruby & Java, PHP \\ \hline
+      %~ http://de.wikipedia.org/wiki/Modifizierbarkeit
+      Modifizierbarkeit    & \textbf{Python} & Ruby & Java, PHP \\ \hline
+      %~ http://de.wikipedia.org/wiki/Robustheit
+      Robustheit           & Java, \textbf{Python}, Ruby & -- & PHP \\ \hline
+      Sicherheit           & Java, \textbf{Python}, Ruby & -- & PHP \\ \hline
+      %~ http://de.wikipedia.org/wiki/Programmierwerkzeug
+      Werkzeuge & Java & PHP, \textbf{Python}, Ruby &  \\ \hline
+    \end{tabular}
+  \end{table}
+
+  Ähnliche/sekundäre Eigenschaften: Abhängigkeit von Programmierwerkzeugen,
+  Skalierbarkeit und Speicherbedarf
+
+  \vspace{12pt}
+  Vereinfachte Übersicht auf Grundlage von \citetitle{hardy:2007} \cite{hardy:2007}
 \end{frame}
 
 
@@ -449,6 +490,9 @@ Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
     \end{table}
 
 \end{frame}
+
+
+%~ MVC (Model-View-Controller) design paradigm
 
 
 \begin{frame}
@@ -1048,6 +1092,8 @@ if __name__ == "__main__":
   \frametitle{Quellen}
 
   {\footnotesize
+
+  \printbibliography
   \begin{itemize}[<1->]
     \item \url{http://www.infoworld.com/d/application-development/pillars-python-six-python-web-frameworks-compared-169442}
     \item \url{http://wiki.python.org/moin/WebFrameworks}
@@ -1088,8 +1134,6 @@ if __name__ == "__main__":
 \item Django Logo
         \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }
         \label{illu:9}
-
-
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
