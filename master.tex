@@ -533,13 +533,13 @@ Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
 \begin{lstlisting}
 from django.db import models
 
+class Concern(models.Model):
+   name = models.CharField(max_length=40)
+
 class Employee(models.Model):
    name = models.CharField(max_length=60)
    boss = models.BooleanField(default=False)
    concern = models.ForeignKey(Concern)
-
-class Concern(models.Model):
-   name = models.CharField(max_length=40)
 \end{lstlisting}
 \hrule
 \begin{lstlisting}
@@ -576,6 +576,19 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \end{lstlisting}
 
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Formulare, Validierung}
+
+  \framesubtitle{Django}
+  Verwendung des Erzeugten Formulars im Template
+  \begin{lstlisting}
+
+  \end{lstlisting}
+  Ausgabe
+
+\end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
@@ -634,21 +647,38 @@ Employee.objects.filter(concern=concern).update(boss=True)
         \item Template-Inheritance
         \item Unterstüzt Filter und Kontrollstrukturen
      \end{itemize}
+
+\vspace{12pt}
+\begin{columns}<1->
+    \begin{column}{.55\textwidth}<1->
+    \textit{base.html:}
+
 \begin{lstlisting}
 <body>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+  <div id="content">
+    {% block main %}{% endblock %}
+  </div>
 </body>
 \end{lstlisting}
 \hrule
 \begin{lstlisting}
 {% extends "base.html" %}
 
-{% block content %}
+{% block main %}
     Inhalt: {{ content }}
 {% endblock %}
 \end{lstlisting}
+
+    \end{column}
+
+    \begin{column}{.45\textwidth}<1->
+    \vspace{12pt}
+     \begin{figure}
+        \includegraphics[width=\textwidth] {template.png}
+      \end{figure}
+    \end{column}
+\end{columns}
+
 \end{frame}
 
 
