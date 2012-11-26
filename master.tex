@@ -400,8 +400,6 @@ for i in range(1, 10):
             \item \textbf{TurboGears}
             \item web2py
             \item Pylons/Pyramid
-            \item Zope2
-            \item Grok
             \item \dots
         \end{itemize}
     \end{column}
@@ -476,26 +474,86 @@ for i in range(1, 10):
 \end{frame}
 
 
-\subsection{Vergleichskriterien}
+\subsection{Turbogears}
+
 \begin{frame}
-Hauptteil:\\
-Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
-(konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
-\todo{Aber schon entlang aller Kriterien.}
+\frametitle{Turbogears }
+  
 
-    \frametitle{Farbdeutung bei Vergleichen}
+  \begin{beamerpostit}
+    \begin{quote}
+      “The next generation web framework that scales with you.”
+    \end{quote}
+  \end{beamerpostit}
 
-    \todo{Testen Sie bitte mit dem Beamer ob das Orange vom Rot unterscheidbar ist.}
-    \begin{table}[h]
-        \begin{tabular}{|c|}
-            \hline
-             \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
-            \cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ \hline
-            \cellcolor{red} nicht optimale Lösung \\ \hline
-         \end{tabular}
-    \end{table}
+  \vspace{12pt}
+  \begin{tikzpicture}[scale=0.88] % timeline 2003-2012->
+    % define coordinates (begin, used, end, arrow)
+    \foreach \x in {2005,2009,2011,2012}{
+        \pgfmathsetlength\yearposx{(\x-2005)*1cm};
+        \coordinate (y\x)   at (\yearposx,0);
+        \coordinate (y\x t) at (\yearposx,+3pt);
+        \coordinate (y\x b) at (\yearposx,-3pt);
+    }
+
+    % draw horizontal line with arrow
+    \draw [->] (y2005) -- (y2013);
+
+    % draw ticks
+    \foreach \x in {2009,2011,2012}
+        \draw (y\x t) -- (y\x b);
+
+    % annotate (draw nodes)
+    \foreach \x in {2005,2009,2011,2012}
+        \node at (y\x) [below=3pt] {\x};
+
+    \fill (y2005) circle (3pt) node[above=3pt] {1.0};
+    \fill (y2009) circle (3pt) node[above=12pt] {1.1};
+    \fill (y2009) circle (3pt) node[above=3pt] {2.0};
+    \fill (y2011) circle (3pt) node[above=3pt] {2.1};
+    \fill (y2012) circle (3pt) node[above=3pt] {2.2};
+  \end{tikzpicture}
+  \vspace{12pt} \\
+    \begin{columns}[T]<1->
+    \begin{column}[T]{.5\textwidth}<1->
+  \begin{itemize}[<1->]
+  \item Aus extern gepflegten Python Modulen zusammengesetzt
+  \item Module sind dabei austauschbar
+  \end{itemize}
+  \end{column}
+   \begin{column}[T]{.5\textwidth}<1->
+  \begin{figure}
+            \includegraphics[width=20mm]{tg.png}
+            \source{[\ref{illu:10}]}
+  \end{figure}
+   \end{column}
+    \end{columns}
+  %~ Some well known sites that use Django include Pinterest, Instagram, Mozilla,
+  %~ The Washington Times and the Public Broadcasting Service.
 
 \end{frame}
+
+
+%\subsection{Vergleichskriterien}
+%\begin{frame}
+%Hauptteil:\\
+%Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
+%(konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
+%\todo{Aber schon entlang aller Kriterien.}
+%
+%    \frametitle{Farbdeutung bei Vergleichen}
+%
+ %   \todo{Testen Sie bitte mit dem Beamer ob das Orange vom Rot %unterscheidbar ist.}
+ %   \begin{table}[h]
+%        \begin{tabular}{|c|}
+%            \hline
+%             \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
+%            \cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ %\hline
+%            \cellcolor{red} nicht optimale Lösung \\ \hline
+ %        \end{tabular}
+%    \end{table}
+
+%\end{frame}
 
 
 %~ MVC (Model-View-Controller) design paradigm
@@ -581,6 +639,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
+
   \framesubtitle{Django}
   Verwendung des Erzeugten Formulars im Template
   \begin{lstlisting}
@@ -594,6 +653,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
   \framesubtitle{Turbogears 2.0}
+  
   \begin{itemize}[<1->]
      \item Hier kann \textit{DBSprockets} verwendet werden
      \item DBSprockets unterstützt \textit{SQLAlchemy}
@@ -614,6 +674,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
+  
   \begin{itemize}[<1->]
     \item Text-basiert:
         \begin{itemize}[<1->]
@@ -642,13 +703,15 @@ Employee.objects.filter(concern=concern).update(boss=True)
     \frametitle{Templates}
     \framesubtitle{Django template language}
      \begin{itemize}[<1->]
-        \item Template-Inheritance $\Rightarrow$ Weniger Logik in den Templates
+        \item Template-Inheritance
         \item Unterstüzt Filter und Kontrollstrukturen
      \end{itemize}
+
 \vspace{12pt}
 \begin{columns}<1->
     \begin{column}{.55\textwidth}<1->
     \textit{base.html:}
+
 \begin{lstlisting}
 <body>
   <div id="content">
@@ -657,8 +720,6 @@ Employee.objects.filter(concern=concern).update(boss=True)
 </body>
 \end{lstlisting}
 \hrule
-\vspace{12pt}
-\textit{site.html:}
 \begin{lstlisting}
 {% extends "base.html" %}
 
@@ -666,6 +727,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
     Inhalt: {{ content }}
 {% endblock %}
 \end{lstlisting}
+
     \end{column}
 
     \begin{column}{.45\textwidth}<1->
@@ -675,6 +737,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
       \end{figure}
     \end{column}
 \end{columns}
+
 \end{frame}
 
 
@@ -705,7 +768,6 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \begin{itemize}[<1->]
     \item Unterstützt Textübersetzung, Datums-, Zeit und Zahlenformattierung, Zeitzonen und Pluralisierung
     \item Markieren der Texte mit ugettext
-    \item Übersetzung in Python-Klassen, Templates und JS-Code
   \end{itemize}
   \begin{lstlisting}
    from django.utils.translation import ugettext as _
@@ -779,41 +841,39 @@ urlpatterns = patterns('news.views',
 
 \begin{frame}
   \frametitle{Routing}
-TurboGears
+\framesubtitle{TurboGears}
+
+\begin{beamerpostit}
+    \begin{quote}
+      “\dots By default you don’t need to think about Routes at all \dots”
+    \end{quote} %~ FIXME Quelle
+  \end{beamerpostit}
+
      \begin{itemize}[<1->]
         \item Object Dispatch, und built in Routes Integration
         \item kann überschrieben werden
+        \item Verwendet Routes (Python Implementierung des Rails-Routes-System)
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}[fragile]
 \frametitle{Routing Beispiel TurboGear 2.0}
-\begin{lstlisting}
-def setup_routes(self):
-    map = Mapper(
-        directory=config['pylons.paths']['controllers'],
-        always_scan=config['debug'])
 
-    # Setup a default route for the root of object dispatch
-    map.connect('*url', controller='root',
-        action='routes_placeholder')
-    config['routes.map'] = map
-\end{lstlisting}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Routing}
-
-    \todo{Wie messen Sie "mächtig" und "einfach"?}
-    \begin{table}[h]
-        \begin{tabular}{|c|c|c|}
-            \hline
-             & Django & TurboGear 2.0  \\ \hline
-            Routing & \cellcolor{dkgreen} mächtig & \cellcolor{dkgreen} einfach,anpassbar     \\ \hline
-         \end{tabular}
-    \end{table}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Routing}%
+%
+%    \todo{Wie messen Sie "mächtig" und "einfach"?}
+%    \begin{table}[h]
+%        \begin{tabular}{|c|c|c|}
+%            \hline
+%             & Django & TurboGear 2.0  \\ \hline
+%            Routing & \cellcolor{dkgreen} mächtig & \cellcolor{dkgreen} %einfach,anpassbar     \\ \hline
+%         \end{tabular}
+%    \end{table}
+%\end{frame}
 
 
 \begin{frame}
@@ -826,13 +886,23 @@ def setup_routes(self):
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Bootstrapping, Scaffolding, Erweiterbarkeit}
+\begin{frame}[fragile]
+  \frametitle{ Scaffolding}
+Django
+ \begin{itemize}[<1->]
+    \item django-common-helpers plugin (https://github.com/Tivix/django-common)
+    \item create app,create models,create views,create templates,create forms,create urls,create tests.
+    \item Generic-Views
+ \end{itemize}
+    \vspace{15pt}
+
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Extras: WebServices, Caching, Tests}
+  Django Admin
 \end{frame}
 
 
@@ -910,12 +980,22 @@ $ python hello.py
 
 \begin{frame}
 
-  \frametitle{Tornado}
+ \begin{columns}[T]<1->
+
+ 	\begin{column}{.3\textwidth}<1->
+            
+    		\begin{figure}
+        		\includegraphics[width=100px]{tornado_logo.png}
+                    \source{[\ref{illu:4}]}
+                \end{figure}
+	\end{column}                
   %~ http://en.wikipedia.org/wiki/Tornado_%28web_server%29
   %~ http://developers.facebook.com/blog/post/301/
   %~ http://news.cnet.com/8301-17939_109-10349836-2.html
 
-  \vspace{-4pt}
+ \begin{column}{.6\textwidth}<1->
+            
+  \vspace{15px}
   \begin{beamerpostit}
     \begin{quote}
       “\dots FriendFeed’s web server is a relatively simple, non-blocking web
@@ -923,35 +1003,19 @@ $ python hello.py
       server and some of the tools we use most often at FriendFeed\dots”
     \end{quote} %~ FIXME Quelle
   \end{beamerpostit}
+  \end{column}
+  \end{columns}
+  
+\vspace{20px}
+   \begin{itemize}[<1->]
+   		\item Webframework und Webserver für Python
+   \end{itemize}
 
-    \begin{columns}<1->
-            \begin{column}{.6\textwidth}<1->
-            \begin{itemize}[<1->]
-                \item Webframework und Webserver für Python
-                \item Große Anzahl gleichzeitiger Verbindungen \todo{Arbeiten
-                    Sie doch auch mal mit Bildern oder Screenshots.}
-            \end{itemize}
+   \begin{figure}
+   		\includegraphics[width=\textwidth]{tornado_stat.png}
+         \source{[\ref{illu:5}]}
+   \end{figure}
 
-            \end{column}
-            \begin{column}{.4\textwidth}<1->
-            \begin{figure}
-                    \includegraphics[width=\textwidth]{tornado_logo.png}
-                    \source{[\ref{illu:4}]}
-                \end{figure}
-            \end{column}
-
-        \end{columns}
-
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Tornado Performance}
-            \vspace{20px}
-            \begin{figure}
-                    \includegraphics[width=\textwidth]{tornado_stat.png}
-                    \source{[\ref{illu:5}]}
-                \end{figure}
 \end{frame}
 
 
@@ -1078,6 +1142,24 @@ if __name__ == "__main__":
     \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Vergleich der Microframeworks}
+
+    \begin{table}[h]
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+             		& Flask & Tornado & Bottle & web.py \\ \hline
+            St\"arke &   &	schnell  &   &      \\ \hline
+            Grenzen &   &   &   &      \\ \hline
+            ?? &   &   &   &      \\ \hline
+            ?? &   &   &   &      \\ \hline
+            ?? &   &   &   &      \\ \hline
+            ?? &   &   &   &      \\ \hline
+
+         \end{tabular}
+    \end{table}
+
+\end{frame}
 
 \begin{frame}
   \frametitle{Kriterienübersicht}
@@ -1164,7 +1246,10 @@ if __name__ == "__main__":
         \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}     \label{illu:8}
 \item Django Logo
         \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }
-        \label{illu:9}
+\label{illu:9}
+\item Turbogears Logo
+        \url{http://turbogears.org/2.0/docs/_static/tg.png}
+\label{illu:10}
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
