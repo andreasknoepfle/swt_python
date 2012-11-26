@@ -1,5 +1,7 @@
 Run following commands: 
 
-$ python bootstrap.py 
+$ python bootstrap.py
 $ ./bin/buildout
+$ ./bin/django runserver
+
 
