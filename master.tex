@@ -209,6 +209,8 @@
 
 
 \section{Python~-- Programmiersprache fürs Web?}
+
+\subsection{Philosophie}
 \begin{frame}
   \frametitle{Python~-- Programmiersprache fürs Web?}
 
@@ -282,7 +284,7 @@
 
 %~ Codebeispiele
 %~ Gegenüberstellungen mit schon behandelten Sprachen
-\subsection{Codebeispiele/Gegenüberstellungen}
+\subsection{Plattformvergleich}
 \begin{frame}[fragile]
   \frametitle{Syntaxvergleich zu Java}
   \vspace{-12pt}
@@ -362,12 +364,14 @@ for i in range(1, 10):
 \end{frame}
 
 
+\subsection{Portabilität durch WSGI}
 \begin{frame}
   \frametitle{Web Server Gateway Interface (WSGI)}
- * Apache (mod\_wsgi), nginx (uWSGI), Gunicorn
-
-\todo{Bild ==$>$ B.}
- % http://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
+  %~ http://www.python.org/dev/peps/pep-0333/
+  %~ http://wsgi.readthedocs.org/en/latest/
+  %~ http://www.ibm.com/developerworks/library/wa-wsgi/
+  %~ http://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
+  \includegraphics[height=60mm]{wsgi.png}
 \end{frame}
 
 
@@ -1115,7 +1119,7 @@ if __name__ == "__main__":
     \item Innenhof Informatik
         \url{http://www.flickr.com/photos/bennybenny/3597853896/}       \label{illu:1}
 
-   \item Fask Logo
+   \item Flask Logo
         \url{http://flask.pocoo.org/static/logo.png}                    \label{illu:3}
 
     \item Tornado Logo
