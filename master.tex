@@ -400,6 +400,8 @@ for i in range(1, 10):
             \item \textbf{TurboGears}
             \item web2py
             \item Pylons/Pyramid
+            \item Zope2
+            \item Grok
             \item \dots
         \end{itemize}
     \end{column}
@@ -579,9 +581,19 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
+  \framesubtitle{Django}
+  Verwendung des Erzeugten Formulars im Template
+  \begin{lstlisting}
+   
+  \end{lstlisting}
+  Ausgabe
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Formulare, Validierung}
   \framesubtitle{Turbogears 2.0}
-  \todo{Da Funktionsweise analog zu Django, ist diese Folie eher Redundant,
-      vielleicht lieber ein Beispiel für die Validierung zeigen}
   \begin{itemize}[<1->]
      \item Hier kann \textit{DBSprockets} verwendet werden
      \item DBSprockets unterstützt \textit{SQLAlchemy}
@@ -602,7 +614,6 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
-  \todo{Arbeiten Sie doch auch mal mit Bildern oder Screenshots.}
   \begin{itemize}[<1->]
     \item Text-basiert:
         \begin{itemize}[<1->]
@@ -631,9 +642,13 @@ Employee.objects.filter(concern=concern).update(boss=True)
     \frametitle{Templates}
     \framesubtitle{Django template language}
      \begin{itemize}[<1->]
-        \item Template-Inheritance
+        \item Template-Inheritance $\Rightarrow$ Weniger Logik in den Templates
         \item Unterstüzt Filter und Kontrollstrukturen
      \end{itemize}
+\vspace{12pt}
+\begin{columns}<1->
+    \begin{column}{.65\textwidth}<1->
+	\textit{base.html:}
 \begin{lstlisting}
 <body>
     <div id="content">
@@ -642,6 +657,8 @@ Employee.objects.filter(concern=concern).update(boss=True)
 </body>
 \end{lstlisting}
 \hrule
+\vspace{12pt}
+\textit{site.html:}
 \begin{lstlisting}
 {% extends "base.html" %}
 
@@ -649,6 +666,15 @@ Employee.objects.filter(concern=concern).update(boss=True)
     Inhalt: {{ content }}
 {% endblock %}
 \end{lstlisting}
+    \end{column}
+
+    \begin{column}{.35\textwidth}<1->
+    \vspace{12pt}
+     \begin{figure}
+        \includegraphics[height=25mm] {template.png}
+      \end{figure}
+    \end{column}
+\end{columns}
 \end{frame}
 
 
@@ -679,6 +705,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \begin{itemize}[<1->]
     \item Unterstützt Textübersetzung, Datums-, Zeit und Zahlenformattierung, Zeitzonen und Pluralisierung
     \item Markieren der Texte mit ugettext
+    \item Übersetzung in Python-Klassen, Templates und JS-Code
   \end{itemize}
   \begin{lstlisting}
    from django.utils.translation import ugettext as _
