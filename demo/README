@@ -1,0 +1,5 @@
+Run following commands: 
+
+$ python bootstrap.py 
+$ ./bin/buildout
+
