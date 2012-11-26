@@ -584,7 +584,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \framesubtitle{Django}
   Verwendung des Erzeugten Formulars im Template
   \begin{lstlisting}
-   
+
   \end{lstlisting}
   Ausgabe
 
@@ -647,13 +647,13 @@ Employee.objects.filter(concern=concern).update(boss=True)
      \end{itemize}
 \vspace{12pt}
 \begin{columns}<1->
-    \begin{column}{.65\textwidth}<1->
-	\textit{base.html:}
+    \begin{column}{.55\textwidth}<1->
+    \textit{base.html:}
 \begin{lstlisting}
 <body>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+  <div id="content">
+    {% block main %}{% endblock %}
+  </div>
 </body>
 \end{lstlisting}
 \hrule
@@ -662,16 +662,16 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{lstlisting}
 {% extends "base.html" %}
 
-{% block content %}
+{% block main %}
     Inhalt: {{ content }}
 {% endblock %}
 \end{lstlisting}
     \end{column}
 
-    \begin{column}{.35\textwidth}<1->
+    \begin{column}{.45\textwidth}<1->
     \vspace{12pt}
      \begin{figure}
-        \includegraphics[height=25mm] {template.png}
+        \includegraphics[width=\textwidth] {template.png}
       \end{figure}
     \end{column}
 \end{columns}
