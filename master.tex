@@ -6,7 +6,6 @@
     smaller,
     compress,
     xcolor=svgnames,            %~ named colors
-    %~ draft
 ]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -86,6 +85,12 @@
 
 \setbeamercolor{framesource}{fg=gray}
 \setbeamerfont{framesource}{size=\footnotesize}
+
+
+%%% inline todonotes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{todonotes}
+%\usepackage[disable]{todonotes} % Hide notes
+\presetkeys{todonotes}{inline}{}
 
 
 %%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -320,7 +325,7 @@ for i in range(1, 10):
   \frametitle{Web Server Gateway Interface (WSGI)}
  * Apache (mod\_wsgi), nginx (uWSGI), Gunicorn
 
- Bild
+\todo{Bild ==$>$ B.}
  % http://de.wikipedia.org/wiki/Web_Server_Gateway_Interface
 \end{frame}
 
@@ -330,6 +335,9 @@ for i in range(1, 10):
 
   Zusammenfassung der genannten Punkte
 
+  \todo{add bullet points, aber dann auch mit Argumentation warum
+      das für Webanwendungen besonders geeignet ist ==$>$ B.}
+
 \end{frame}
 
 
@@ -337,7 +345,11 @@ for i in range(1, 10):
 \begin{frame}
   \frametitle{Webframeworks für Python (Auswahl)}
   %~ TODO add logos
-     Full-Stack Frameworks
+
+  \begin{columns}[T]
+    \begin{column}[T]{.5\textwidth}<1->
+        Full-Stack Frameworks
+        \vspace{4pt}
         \begin{itemize}[<1->]
             \item \textbf{Django}
             \item \textbf{TurboGears}
@@ -345,15 +357,19 @@ for i in range(1, 10):
             \item Pylons/Pyramid
             \item \dots
         \end{itemize}
-         Microframeworks
+    \end{column}
+    \begin{column}[T]{.5\textwidth}<1->
+        Microframeworks
         \begin{itemize}[<1->]
             \item \textbf{Bottle}
             \item \textbf{Tornado}
             \item \textbf{Flask}
             \item \textbf{web.py}
             \item CherryPy
-    		\item \dots
+            \item \dots
         \end{itemize}
+    \end{column}
+  \end{columns}
 
 % , Other Full-Stack Frameworks, Basic Frameworks
 % * Django\\
@@ -366,8 +382,8 @@ for i in range(1, 10):
 \subsection{Django}
 \begin{frame}
   \begin{figure}
-        			\includegraphics[width=25mm]{django-logo.png}
-        			\source{[\ref{illu:9}]}
+                    \includegraphics[width=25mm]{django-logo.png}
+                    \source{[\ref{illu:9}]}
   \end{figure}
 
   \begin{beamerpostit}
@@ -418,9 +434,11 @@ for i in range(1, 10):
 Hauptteil:\\
 Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
 (konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
+\todo{Aber schon entlang aller Kriterien.}
 
     \frametitle{Farbdeutung bei Vergleichen}
 
+    \todo{Testen Sie bitte mit dem Beamer ob das Orange vom Rot unterscheidbar ist.}
     \begin{table}[h]
         \begin{tabular}{|c|}
             \hline
@@ -462,6 +480,8 @@ Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
 \begin{frame}[fragile]
   \frametitle{Persistenz}
   \framesubtitle{Django}
+
+  \vspace{-8pt}
 \begin{lstlisting}
 from django.db import models
 
@@ -494,11 +514,12 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \end{itemize}
   \begin{lstlisting}
     from django.forms import ModelForm
+
     class EmployeeForm(ModelForm):
        class Meta:
           model = Employee
 
-    # Formular erzeugen 
+    # Formular erzeugen
     form = EmployeeForm()
 
     # Formular zum editieren erzeugen
@@ -507,18 +528,21 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \end{lstlisting}
 
 \end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
   \framesubtitle{Turbogears 2.0}
+  \todo{Da Funktionsweise analog zu Django, ist diese Folie eher Redundant,
+      vielleicht lieber ein Beispiel für die Validierung zeigen}
   \begin{itemize}[<1->]
-     \item Hier kann DBSprockets verwendet werden
-     \item DBSprockets unterstützt SQLAlchemy
+     \item Hier kann \textit{DBSprockets} verwendet werden
+     \item DBSprockets unterstützt \textit{SQLAlchemy}
      \item Funktionsweise analog zu Django
-     \item \textit{Alternative: Sprox, ToscaWidgets}
+     \item Alternative: \textit{Sprox}, \textit{ToscaWidgets}
   \end{itemize}
   \begin{lstlisting}
     from dbsprockets.declaratives import FormBase
-	
+
     class EmployeeForm(FormBase):
         __model__ = Employee
 
@@ -530,6 +554,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
+  \todo{Arbeiten Sie doch auch mal mit Bildern oder Screenshots.}
   \begin{itemize}[<1->]
     \item Text-basiert:
         \begin{itemize}[<1->]
@@ -615,8 +640,8 @@ Employee.objects.filter(concern=concern).update(boss=True)
       return HttpResponse(output)
   \end{lstlisting}
   \begin{itemize}[<1->]
-    	\item Werkzeuge zum erstellen neuer Sprachdateien: \\
- 		\textbf{django-admin.py makemessages -l de}
+    \item Werkzeuge zum erstellen neuer Sprachdateien: \\
+        \textbf{django-admin.py makemessages -l de}
   \end{itemize}
    \begin{lstlisting}
    #: path/to/python/module.py:23
@@ -705,7 +730,7 @@ def setup_routes(self):
 \begin{frame}
     \frametitle{Routing}
 
-    %~ Quelle, für Overload bei Django? Theorie?
+    \todo{Wie messen Sie "mächtig" und "einfach"?}
     \begin{table}[h]
         \begin{tabular}{|c|c|c|}
             \hline
@@ -713,8 +738,6 @@ def setup_routes(self):
             Routing & \cellcolor{dkgreen} mächtig & \cellcolor{dkgreen} einfach,anpassbar     \\ \hline
          \end{tabular}
     \end{table}
-
-
 \end{frame}
 
 
@@ -747,6 +770,7 @@ def setup_routes(self):
 
 \begin{frame}
   \frametitle{Flask}
+  %~ http://en.wikipedia.org/wiki/Flask_%28programming%29
   %~ http://www.slideshare.net/trustrachel/django-vs-flask
 
   \vspace{-4pt}
@@ -812,6 +836,7 @@ $ python hello.py
 \begin{frame}
 
   \frametitle{Tornado}
+  %~ http://en.wikipedia.org/wiki/Tornado_%28web_server%29
   %~ http://developers.facebook.com/blog/post/301/
   %~ http://news.cnet.com/8301-17939_109-10349836-2.html
 
@@ -828,7 +853,8 @@ $ python hello.py
             \begin{column}{.6\textwidth}<1->
             \begin{itemize}[<1->]
                 \item Webframework und Webserver für Python
-                \item Große Anzahl gleichzeitiger Verbindungen
+                \item Große Anzahl gleichzeitiger Verbindungen \todo{Arbeiten
+                    Sie doch auch mal mit Bildern oder Screenshots.}
             \end{itemize}
 
             \end{column}
@@ -878,34 +904,34 @@ if __name__ == "__main__":
 \end{frame}
 
 \begin{frame}
-	\begin{columns}[T]
-	
-    		\begin{column}{.3\textwidth}<1->
-			\begin{figure}
-        			\includegraphics[width=25mm]{bottle_logo.png}
-        			\source{[\ref{illu:6}]}
-    			\end{figure}
-    			
-    			"...a fast, simple and lightweight WSGI micro web-framework for Python."
-    		\end{column}
-    		
+    \begin{columns}[T]
 
-    		\begin{column}{.7\textwidth}<1->
-    		\vspace{100px}
-    		\begin{itemize}[<1->]
-    			\item Was kann/ist Bottle ?
-     		\begin{itemize}[<1->]
-        			\item Routing - saubere und dynamische URLs
-        			\item Eingebaute Template-Engine (unterstützt auch mako, jinja2 und cheetah)
-        			\item Formular-Daten Zugriff, Dateiuploads, Cookies,...
-        			\item Eingebauter Entwicklungsserver
-        			
-    			\end{itemize}
-  		\end{itemize}
-  		
-    		\end{column}
-    		
-    	\end{columns}
+            \begin{column}{.3\textwidth}<1->
+            \begin{figure}
+                    \includegraphics[width=25mm]{bottle_logo.png}
+                    \source{[\ref{illu:6}]}
+                \end{figure}
+
+                "...a fast, simple and lightweight WSGI micro web-framework for Python."
+            \end{column}
+
+
+            \begin{column}{.7\textwidth}<1->
+            \vspace{100px}
+            \begin{itemize}[<1->]
+                \item Was kann/ist Bottle ?
+            \begin{itemize}[<1->]
+                    \item Routing - saubere und dynamische URLs
+                    \item Eingebaute Template-Engine (unterstützt auch mako, jinja2 und cheetah)
+                    \item Formular-Daten Zugriff, Dateiuploads, Cookies,...
+                    \item Eingebauter Entwicklungsserver
+
+                \end{itemize}
+        \end{itemize}
+
+            \end{column}
+
+        \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -927,53 +953,53 @@ run(host='localhost', port=8080)
 
 \begin{frame}
 
-	\begin{columns}[T]
-	
-    		\begin{column}{.3\textwidth}<1->
-			\begin{figure}
-        			\includegraphics[width=25mm]{webpy_logo.png}
-        			\source{[\ref{illu:7}]}
-    			\end{figure}
-    			
-    			"...is a web framework for Python that is as simple as it is powerful..."
-    		\end{column}
-    		
+    \begin{columns}[T]
 
-    		\begin{column}{.7\textwidth}<1->
-    		\vspace{100px}
-    		\begin{itemize}[<1->]
-    			\item Was kann/ist web.py ?
-     		\begin{itemize}[<1->]
-        			\item ...
-        		\end{itemize}
-  		\end{itemize}
-  		
-    		\end{column}
-    		
-    	\end{columns}
+            \begin{column}{.3\textwidth}<1->
+            \begin{figure}
+                    \includegraphics[width=25mm]{webpy_logo.png}
+                    \source{[\ref{illu:7}]}
+                \end{figure}
+
+                "...is a web framework for Python that is as simple as it is powerful..."
+            \end{column}
+
+
+            \begin{column}{.7\textwidth}<1->
+            \vspace{100px}
+            \begin{itemize}[<1->]
+                \item Was kann/ist web.py ?
+            \begin{itemize}[<1->]
+                    \item ...
+                \end{itemize}
+        \end{itemize}
+
+            \end{column}
+
+        \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{web.py Beispiel}
-  
-  
+
+
   \begin{lstlisting}
 import web
-        
+
 urls = (
     '/(.*)', 'hello'
 )
 app = web.application(urls, globals())
 
-class hello:        
+class hello:
     def GET(self, name):
-        if not name: 
+        if not name:
             name = 'World'
         return 'Hello, ' + name + '!'
 
 if __name__ == "__main__":
     app.run()
-    
+
     \end{lstlisting}
 \end{frame}
 
@@ -982,32 +1008,42 @@ if __name__ == "__main__":
   \frametitle{Kriterienübersicht}
  * Vergleichstabellen (Django vs. ...)
 
-	\begin{table}[h]
+    \begin{table}[h]
         \begin{tabular}{|c|c|c|}
             \hline
              & Django & TurboGear 2.0  \\ \hline
-			Persistenz &   &      \\ \hline
-			Formulare,Validierung &   &      \\ \hline
-			Templates &   &      \\ \hline
-			Routing &   &      \\ \hline
+            Persistenz &   &      \\ \hline
+            Formulare,Validierung &   &      \\ \hline
+            Templates &   &      \\ \hline
+            Routing &   &      \\ \hline
             Sicherheitsmechanismen &   &      \\ \hline
             Bootstrapping,Scaffolding &   &      \\ \hline
-            
+
          \end{tabular}
-    \end{table} 
- 
+    \end{table}
+
 \end{frame}
 
 
+%~ „Letzte Folie“: einprägsame Botschaft
+%~ ggf. Bezug auf Eingangsfolie nehmen
 \section{Fazit}
 \begin{frame}
   \frametitle{Fazit}
 
   Je Anforderungen an das Webframework (“Taste”)\\
   \dots
+
+  %~ * Ich hoffe, habt jetzt einen besseren Eindruck über Webframeworks für
+  %~   Python gewinnen können.
+  %~ * Vielen Dank für die Aufmerksamkeit.
+  %~ * offene Fragen?/Diskussion genannter Punkte
+  %~ * danach Kritik/Anregungen
 \end{frame}
 
 
+%~ Hinweise zu weiteren Informationen im Internet: die Chance, dass sich die
+%~ Zuhörer das Thema Ihres Vortrags nachhaltig einprägen.
 \begin{frame}
   \frametitle{Quellen}
 
@@ -1041,31 +1077,21 @@ if __name__ == "__main__":
 
     \item Tornado Statistik (Bret Taylor, 10. September 2009)
         \url{http://http://developers.facebook.com/blog/post/301/}      \label{illu:5}
-        
+
     \item Bottle Logo
-        \url{http://bottlepy.org/docs/dev/_static/logo_nav.png}				\label{illu:6}
-        
+        \url{http://bottlepy.org/docs/dev/_static/logo_nav.png}             \label{illu:6}
+
     \item web.py Logo
-        \url{http://webpy.org/static/webpy.gif}				\label{illu:7}
+        \url{http://webpy.org/static/webpy.gif}             \label{illu:7}
      \item po-Editor
-        \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}		\label{illu:8}  
+        \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}     \label{illu:8}
 \item Django Logo
-        \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }		
-        \label{illu:9}  
-        
-       
+        \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }
+        \label{illu:9}
+
+
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
-\end{frame}
-
-
-%~ Letzte Folie: einprägsame Botschaft
-\begin{frame}
-    \frametitle{Ende der Präsentation}
-    %~ Vielen Dank für die Aufmerksamkeit.
-    %~ offene Fragen?/Diskussion, sowie Kritik/Anregungen
-    \LARGE
-
 \end{frame}
 
 \end{document}
