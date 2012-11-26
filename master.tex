@@ -476,26 +476,86 @@ for i in range(1, 10):
 \end{frame}
 
 
-\subsection{Vergleichskriterien}
+\subsection{Turbogears}
+
 \begin{frame}
-Hauptteil:\\
-Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
-(konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
-\todo{Aber schon entlang aller Kriterien.}
+\frametitle{Turbogears }
+  
 
-    \frametitle{Farbdeutung bei Vergleichen}
+  \begin{beamerpostit}
+    \begin{quote}
+      “The next generation web framework that scales with you.”
+    \end{quote}
+  \end{beamerpostit}
 
-    \todo{Testen Sie bitte mit dem Beamer ob das Orange vom Rot unterscheidbar ist.}
-    \begin{table}[h]
-        \begin{tabular}{|c|}
-            \hline
-             \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
-            \cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ \hline
-            \cellcolor{red} nicht optimale Lösung \\ \hline
-         \end{tabular}
-    \end{table}
+  \vspace{12pt}
+  \begin{tikzpicture}[scale=0.88] % timeline 2003-2012->
+    % define coordinates (begin, used, end, arrow)
+    \foreach \x in {2005,2009,2011,2012}{
+        \pgfmathsetlength\yearposx{(\x-2005)*1cm};
+        \coordinate (y\x)   at (\yearposx,0);
+        \coordinate (y\x t) at (\yearposx,+3pt);
+        \coordinate (y\x b) at (\yearposx,-3pt);
+    }
+
+    % draw horizontal line with arrow
+    \draw [->] (y2005) -- (y2013);
+
+    % draw ticks
+    \foreach \x in {2009,2011,2012}
+        \draw (y\x t) -- (y\x b);
+
+    % annotate (draw nodes)
+    \foreach \x in {2005,2009,2011,2012}
+        \node at (y\x) [below=3pt] {\x};
+
+    \fill (y2005) circle (3pt) node[above=3pt] {1.0};
+    \fill (y2009) circle (3pt) node[above=12pt] {1.1};
+    \fill (y2009) circle (3pt) node[above=3pt] {2.0};
+    \fill (y2011) circle (3pt) node[above=3pt] {2.1};
+    \fill (y2012) circle (3pt) node[above=3pt] {2.2};
+  \end{tikzpicture}
+  \vspace{12pt} \\
+    \begin{columns}[T]<1->
+    \begin{column}[T]{.5\textwidth}<1->
+  \begin{itemize}[<1->]
+  \item Aus extern gepflegten Python Modulen zusammengesetzt
+  \item Module sind dabei austauschbar
+  \end{itemize}
+  \end{column}
+   \begin{column}[T]{.5\textwidth}<1->
+  \begin{figure}
+            \includegraphics[width=20mm]{tg.png}
+            \source{[\ref{illu:10}]}
+  \end{figure}
+   \end{column}
+    \end{columns}
+  %~ Some well known sites that use Django include Pinterest, Instagram, Mozilla,
+  %~ The Washington Times and the Public Broadcasting Service.
 
 \end{frame}
+
+
+%\subsection{Vergleichskriterien}
+%\begin{frame}
+%Hauptteil:\\
+%Vor- und Nachteile einiger weniger Frameworks aufzeigen\\
+%(konkrete) Lösungsansätze für bestimmte Probleme/Vergleichskriterien
+%\todo{Aber schon entlang aller Kriterien.}
+%
+%    \frametitle{Farbdeutung bei Vergleichen}
+%
+ %   \todo{Testen Sie bitte mit dem Beamer ob das Orange vom Rot %unterscheidbar ist.}
+ %   \begin{table}[h]
+%        \begin{tabular}{|c|}
+%            \hline
+%             \cellcolor{dkgreen} sehr gute Lösung  \\ \hline
+%            \cellcolor{orange} in manchen Fällen evtl. nicht optimal \\ %\hline
+%            \cellcolor{red} nicht optimale Lösung \\ \hline
+ %        \end{tabular}
+%    \end{table}
+
+%\end{frame}
 
 
 %~ MVC (Model-View-Controller) design paradigm
@@ -1164,7 +1224,10 @@ if __name__ == "__main__":
         \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}     \label{illu:8}
 \item Django Logo
         \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }
-        \label{illu:9}
+\label{illu:9}
+\item Turbogears Logo
+        \url{http://turbogears.org/2.0/docs/_static/tg.png}
+\label{illu:10}
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
