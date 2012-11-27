@@ -933,9 +933,18 @@ http://localhost:8080/hello => This page is not ready
   \frametitle{Scaffolding}
 \framesubtitle{Django}
  \begin{itemize}[<1->]
+     \item Generic-Views (siehe Beispiel-Applikation)
     \item django-common-helpers plugin (https://github.com/Tivix/django-common)
-    \item create app,create models,create views,create templates,create forms,create urls,create tests.
-    \item Generic-Views (siehe Beispiel-Applikation)
+    \begin{itemize}[<1->]
+    \item create app
+    \item create models
+    \item create views
+    \item create templates
+    \item create forms
+    \item create urls
+    \item create tests
+    \end{itemize}
+
  \end{itemize}
     \vspace{15pt}
 
@@ -1188,9 +1197,9 @@ if __name__ == "__main__":
             \begin{itemize}[<1->]
                 \item Was kann/ist Bottle ?
             \begin{itemize}[<1->]
-                    \item Routing - saubere und dynamische URLs
+                    \item Routing
                     \item Eingebaute Template-Engine (unterstützt auch mako, jinja2 und cheetah)
-                    \item Formular-Daten Zugriff, Dateiuploads, Cookies,...
+                    \item Keine Abhängigkeiten (alles in einem Modul)
                     \item Eingebauter Entwicklungsserver
 
                 \end{itemize}
@@ -1239,9 +1248,9 @@ run(host='localhost', port=8080)
             \begin{itemize}[<1->]
                 \item Was kann/ist web.py ?
             \begin{itemize}[<1->]
-                    \item URL Handling
-                    \item Template Sprache
-                    \item Formulare
+                    \item Eigene Template Sprache (angelehnt an Python)
+                    \item Eingebaute Formularunterstützung
+                    \item Abstraktion der Datenbank API ohne ORM
                 \end{itemize}
         \end{itemize}
 
@@ -1269,36 +1278,6 @@ if __name__ == "__main__":
     app.run()
 
     \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Vergleich der Microframeworks}
-
-  \vspace{-8pt}
-  \rowcolors{1}{white}{solarized@base3}
-    \begin{table}[h]
-        \begin{tabular}{|c|c|c|c|c|}
-            \hline
-                          & Flask & Tornado & Bottle & web.py \\ \hline \hline
-            Besonderheit  &   &  schnell  &   &      \\ \hline \hline
-            Bootstrapping &   &   &   &      \\ \hline
-            Scaffolding   &   &   &   &      \\ \hline
-            Persistenz    &   &   &   &      \\ \hline
-            Formulare     &   &   &   &      \\ \hline
-            Validierung   &   &   &   &      \\ \hline
-            Routing       &   &   &   &      \\ \hline
-            Templates     &   &   &   &      \\ \hline
-            L10N          &   &   &   &      \\ \hline
-            l18N          &   &   &   &      \\ \hline
-            Konfiguration &   &   &   &      \\ \hline
-            Plugins       &   &   &   &      \\ \hline
-            Sicherheit    &   &   &   &      \\ \hline
-            Caching       &   &   &   &      \\ \hline
-            Webservices   &   &   &   &      \\ \hline
-            Unit testing  &   &   &   &      \\ \hline
-         \end{tabular}
-    \end{table}
-
 \end{frame}
 
 
