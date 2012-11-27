@@ -913,6 +913,10 @@ http://localhost:8080/hello => This page is not ready
     \begin{itemize}[<1->]
     			\item automatisches Escape von Benutzereingaben
     		\end{itemize}
+    \item Cross Site Request Forgery (CSRF)
+    	 \begin{itemize}[<1->]
+    			\item Eingebaute Helper mit CSRF Token
+    		\end{itemize}
     \item Session Forging/Hijacking
     \begin{itemize}[<1->]
     			\item Session Informationen niemals in URL
@@ -926,7 +930,7 @@ http://localhost:8080/hello => This page is not ready
 
 
 \begin{frame}[fragile]
-  \frametitle{ Scaffolding}
+  \frametitle{Scaffolding}
 \framesubtitle{Django}
  \begin{itemize}[<1->]
     \item django-common-helpers plugin (https://github.com/Tivix/django-common)
@@ -940,10 +944,43 @@ http://localhost:8080/hello => This page is not ready
 
 
 \begin{frame}
-  \frametitle{Extras: WebServices, Caching, Tests}
-  Django Admin
+  \frametitle{Extras}
+  \framesubtitle{Django Adminitration}
+  \begin{itemize}[<1->]
+  		\item Eingebaute Administrationsoberfläche
+  		\item Registrierte Modelle können verwaltet werden
+  \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Kriterienübersicht}
+ 
+ \rowcolors{1}{white}{solarized@base3}
+    \begin{table}[h]
+        \begin{tabular}{|c|c|c|}
+            \hline
+             & Django & TurboGears 2.0  \\ \hline \hline
+             Bootstrapping & \checkmark \cellcolor{dkgreen}   &  \checkmark  \cellcolor{dkgreen}  \\ \hline
+            Scaffolding   &  \checkmark  \cellcolor{dkgreen}  &  tgcrud  \cellcolor{yellow}    \\ \hline
+            Persistenz    &  \checkmark  \cellcolor{dkgreen} &  SQLAlchemy  \cellcolor{yellow}      \\ \hline
+            Formulare     & \checkmark  \cellcolor{dkgreen}  &  dbsprockets  \cellcolor{yellow}       \\ \hline
+            Validierung   &  \checkmark  \cellcolor{dkgreen} &    FormEncode   \cellcolor{yellow}    \\ \hline
+            Routing       &  RegEx-Patterns  \cellcolor{dkgreen} &  Rails-Routes \cellcolor{dkgreen}   \\ \hline
+            Templates     &  \checkmark  \cellcolor{dkgreen} &    \checkmark  \cellcolor{dkgreen}      \\ \hline
+            L10N          &  \checkmark  \cellcolor{dkgreen} &     \checkmark  \cellcolor{dkgreen}    \\ \hline
+            l18N          &  \checkmark  \cellcolor{dkgreen} &     \checkmark  \cellcolor{dkgreen}   \\ \hline
+            Sicherheit    &  \checkmark  \cellcolor{dkgreen} &   Modulabhängig  \cellcolor{yellow}   \\ \hline
+  			Plugins       &  1525+  &  Pylons/Zope/TG     \\ \hline
+         \end{tabular}
+    \end{table}
+		 \begin{table}[h]
+        \begin{tabular}{|c|}
+            \hline
+            \cellcolor{dkgreen} Vorhanden  \\ \hline
+            \cellcolor{yellow} Über Module zuschaltbar \\ \hline
+         \end{tabular}
+    \end{table}
+\end{frame}
 
 \section{noch mehr Frameworks ;-)}
 
@@ -1264,26 +1301,38 @@ if __name__ == "__main__":
 
 \end{frame}
 
+
 \begin{frame}
-  \frametitle{Kriterienübersicht}
- * Vergleichstabellen (Django vs. ...)
-
-    \begin{table}[h]
-        \begin{tabular}{|c|c|c|}
-            \hline
-             & Django & TurboGear 2.0  \\ \hline
-            Persistenz &   &      \\ \hline
-            Formulare,Validierung &   &      \\ \hline
-            Templates &   &      \\ \hline
-            Routing &   &      \\ \hline
-            Sicherheitsmechanismen &   &      \\ \hline
-            Bootstrapping,Scaffolding &   &      \\ \hline
-
-         \end{tabular}
-    \end{table}
+  \frametitle{Beliebtheit Full-Stack-Frameworks}
+  \framesubtitle{Google Trends}
+	\vspace{-12pt}
+     \begin{figure}
+         \includegraphics[width=1.0\textwidth]{trends.png}
+                   
+     \end{figure}
+     \vspace{-12pt}
+     Anzahl der Themen in den jeweiligen Mailinglisten:
+     \vspace{8pt}
+      \begin{itemize}[<1->]
+     	\item Django: 37967
+     	\item web2py: 19329
+     	\item Turbogears: 9959
+     	\item Pylons: 4966
+     \end{itemize}
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{Beliebtheit Microframeworks}
+  \framesubtitle{Google Trends}
+
+     
+      \begin{figure}
+         \includegraphics[width=1.0\textwidth]{trends-micro.png}
+                   
+     \end{figure}
+
+\end{frame}
 
 %~ „Letzte Folie“: einprägsame Botschaft
 %~ ggf. Bezug auf Eingangsfolie nehmen
