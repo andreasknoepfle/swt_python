@@ -917,19 +917,34 @@ Django
 %~ http://pydanny-event-notes.readthedocs.org/en/latest/DjangoConEurope2012/flasky-goodness-or-why-django-sucks.html
 
 \begin{frame}
-  \frametitle{Flask}
+  %\frametitle{Flask}
   %~ http://en.wikipedia.org/wiki/Flask_%28programming%29
   %~ http://www.slideshare.net/trustrachel/django-vs-flask
 
-  \vspace{-4pt}
-  \begin{beamerpostit}
+
+
+    \begin{columns}<1->
+            \begin{column}{.3\textwidth}<1->
+
+            \begin{figure}
+                    \includegraphics[width=\textwidth]{flask_logo.png}
+                    \source{[\ref{illu:3}]}
+                \end{figure}            
+            
+            \end{column}
+
+    \begin{column}{.7\textwidth}<1->
+
+  \vspace{10pt}
+
+\begin{beamerpostit}
     \begin{quote}
       “\dots microframework for Python based on Werkzeug, Jinja2 and good intentions\dots”
     \end{quote} %~ FIXME Quelle
-  \end{beamerpostit}
+  \end{beamerpostit}\source{[\ref{zit:1}]}
 
-    \begin{columns}<1->
-            \begin{column}{.6\textwidth}<1->
+  \vspace{50pt}
+
             \begin{itemize}[<1->]
                     \item Flexibilität für Entwickler%
                     % wenig Einschränkungen/Vorschriften bei Quelltext
@@ -943,13 +958,7 @@ Django
                     %\item WSGI 1.0 konform
                     \item inspiriert von Sinatra (Ruby)
             \end{itemize}
-            \end{column}
 
-    \begin{column}{.4\textwidth}<1->
-            \begin{figure}
-                    \includegraphics[width=\textwidth]{flask_logo.png}
-                    \source{[\ref{illu:3}]}
-                \end{figure}
             \end{column}
 
         \end{columns}
@@ -991,6 +1000,11 @@ $ python hello.py
                 \includegraphics[width=100px]{tornado_logo.png}
                     \source{[\ref{illu:4}]}
                 \end{figure}
+
+		   \begin{itemize}[<1->]
+        \item Webframework und Webserver für Python
+   \end{itemize}
+
     \end{column}
   %~ http://en.wikipedia.org/wiki/Tornado_%28web_server%29
   %~ http://developers.facebook.com/blog/post/301/
@@ -1005,14 +1019,11 @@ $ python hello.py
       server written in Python\dots Tornado is an open source version of this web
       server and some of the tools we use most often at FriendFeed\dots”
     \end{quote} %~ FIXME Quelle
-  \end{beamerpostit}
+  \end{beamerpostit}\source{[\ref{zit:2}]}
   \end{column}
   \end{columns}
 
-\vspace{20px}
-   \begin{itemize}[<1->]
-        \item Webframework und Webserver für Python
-   \end{itemize}
+\vspace{10px}
 
    \begin{figure}
         \includegraphics[width=\textwidth]{tornado_stat.png}
@@ -1037,12 +1048,21 @@ $ python hello.py
 	\end{columns}
 \vspace{20px}
 
+Was kann/ist Tornado noch ?
+
 \begin{itemize}[<1->]
-                \item Was kann/ist Tornado noch ?
-            \begin{itemize}[<1->]
+                \item Core Web-Framework
+            		\begin{itemize}[<1->]
                     \item Template System (tornado.template)
                     \item Internationalisierung (tornado.locale)
 					\item Unit Testing (tornado.testing)
+                \end{itemize}
+                \item Einige weitere Hilfsmittel, Services,... 
+                \begin{itemize}[<1->]
+                    \item Nicht blockierender HTTP-Client
+                    \item Login mit OpenID und OAuth (3rd party)
+                    \item MySQL client Wrapper
+                    \item ...
                 \end{itemize}
         \end{itemize}  
   
@@ -1072,7 +1092,7 @@ if __name__ == "__main__":
 \end{frame}
 
 \begin{frame}
-    \begin{columns}[T]
+    \begin{columns}[T]<1->
 
             \begin{column}{.3\textwidth}<1->
             \begin{figure}
@@ -1080,12 +1100,18 @@ if __name__ == "__main__":
                     \source{[\ref{illu:6}]}
                 \end{figure}
 
-                "...a fast, simple and lightweight WSGI micro web-framework for Python."
             \end{column}
+		\begin{column}{.7\textwidth}<1->
+		\end{column}
+        \end{columns}
 
+ 		\begin{beamerpostit}
+    			\begin{quote}
+    				“\dots a fast, simple and lightweight WSGI micro web-framework for Python \dots"
+    			\end{quote}
+    		\end{beamerpostit}\source{[\ref{zit:3}]}
 
-            \begin{column}{.7\textwidth}<1->
-            \vspace{100px}
+            \vspace{20px}
             \begin{itemize}[<1->]
                 \item Was kann/ist Bottle ?
             \begin{itemize}[<1->]
@@ -1097,9 +1123,6 @@ if __name__ == "__main__":
                 \end{itemize}
         \end{itemize}
 
-            \end{column}
-
-        \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1121,30 +1144,34 @@ run(host='localhost', port=8080)
 
 \begin{frame}
 
-    \begin{columns}[T]
+    \begin{columns}[T]<1->
 
             \begin{column}{.3\textwidth}<1->
             \begin{figure}
                     \includegraphics[width=25mm]{webpy_logo.png}
                     \source{[\ref{illu:7}]}
                 \end{figure}
-
-                "...is a web framework for Python that is as simple as it is powerful..."
             \end{column}
 
-
             \begin{column}{.7\textwidth}<1->
-            \vspace{100px}
+        		 \end{column}
+        \end{columns}
+         \begin{beamerpostit}
+			\begin{quote}
+      “\dots is a web framework for Python that is as simple as it is powerful \dots”
+    \end{quote} %~ FIXME Quelle
+         \end{beamerpostit}\source{[\ref{zit:4}]}
+        
+         \vspace{50px}
             \begin{itemize}[<1->]
                 \item Was kann/ist web.py ?
             \begin{itemize}[<1->]
-                    \item ...
+                    \item URL Handling
+                    \item Template Sprache
+                    \item Formulare
                 \end{itemize}
         \end{itemize}
 
-            \end{column}
-
-        \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1260,7 +1287,6 @@ if __name__ == "__main__":
   }
 \end{frame}
 
-
 \begin{frame}
   \frametitle{Quellen der Abbildungen}
   \footnotesize
@@ -1292,6 +1318,30 @@ if __name__ == "__main__":
 \label{illu:10}
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quellen der Zitate}
+  \footnotesize
+  \begin{enumerate}[<1->]
+  \setcounter{enumi}{9}
+    \item Flask
+        \url{http://flask.pocoo.org/}       		
+        \label{zit:1}
+    \item Tornado
+        \url{http://www.tornadoweb.org/documentation/overview.html}       
+        \label{zit:2}
+   	\item Bottle
+        \url{http://bottlepy.org/docs/dev/}       
+        \label{zit:3}
+   	\item web.py
+        \url{http://webpy.org/}       
+        \label{zit:4}
+           
+  \end{enumerate}
+  alle URLs aufgerufen am 27. November 2012.
+\todo{setcounter anpassen}  
+  
 \end{frame}
 
 \end{document}
