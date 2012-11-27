@@ -480,7 +480,8 @@ for i in range(1, 10):
 \subsection{Turbogears}
 
 \begin{frame}
-\frametitle{Turbogears }
+  \frametitle{Turbogears}
+  %~ http://www.turbogears.org/2.2/docs/main/TG2Philosophy.html
 
   \vspace{-32pt}
   \begin{figure}
@@ -498,7 +499,7 @@ for i in range(1, 10):
   \vspace{12pt}
   \begin{tikzpicture}[scale=0.88] % timeline 2003-2012->
     % define coordinates (begin, used, end, arrow)
-    \foreach \x in {2005,2009,2011,2012}{
+    \foreach \x in {2005,2009,2011,2012,2013}{
         \pgfmathsetlength\yearposx{(\x-2005)*1cm};
         \coordinate (y\x)   at (\yearposx,0);
         \coordinate (y\x t) at (\yearposx,+3pt);
@@ -519,6 +520,7 @@ for i in range(1, 10):
     \fill (y2005) circle (3pt) node[above=12pt] {1.0};
     \fill (y2009) circle (3pt) node[above=13pt] {1.1};
     \fill (y2009) circle (3pt) node[above=3pt] {2.0};
+    \fill (y2011) circle (3pt) node[above=13pt] {1.5};
     \fill (y2011) circle (3pt) node[above=3pt] {2.1};
     \fill (y2012) circle (3pt) node[above=3pt] {2.2};
   \end{tikzpicture}
@@ -563,16 +565,16 @@ for i in range(1, 10):
     \textbf{SQL-ORMs}
     \begin{itemize}[<1->]
         \item Django built-in ORM (Django)
-        \item SQLAlchemy (Pylons,Turbogears) %Gork,Zope
+        \item SQLAlchemy (Pylons, Turbogears 2) %Gork,Zope
         % \item Storm (Grok )
-        \item SQLObject (Pylons,TurboGears)
+        \item SQLObject (Pylons, TurboGears 2)
         \item DAL (web2py)
         \item \dots
      \end{itemize}
      \textbf{MongoDB ORMs}
     \begin{itemize}[<1->]
         \item MongoDB Engine (Django)
-        \item Ming (TurboGears)
+        \item Ming (TurboGears 2)
     \end{itemize}
 
   \vspace{12pt}
@@ -650,7 +652,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
-  \framesubtitle{Turbogears 2.0}
+  \framesubtitle{Turbogears 2}
 
   \begin{itemize}[<1->]
      \item Hier kann \textit{DBSprockets} verwendet werden
@@ -791,7 +793,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \end{frame}
 \begin{frame}
   \frametitle{I18N und L10N}
-  \framesubtitle{Turbogears 2.0}
+  \framesubtitle{Turbogears 2}
   \begin{itemize}[<1->]
     \item Internationalisierung mit Python Modul \textit{gettext}
     \item Funktionsweise analog zu Django
@@ -845,7 +847,7 @@ urlpatterns = patterns('news.views',
 
 \begin{frame}
   \frametitle{Routing}
-\framesubtitle{TurboGears}
+\framesubtitle{TurboGears 2}
 
 \begin{beamerpostit}
     \begin{quote}
@@ -863,7 +865,7 @@ urlpatterns = patterns('news.views',
 
 \begin{frame}[fragile]
 
-\frametitle{Routing Beispiel TurboGears}
+\frametitle{Routing Beispiel TurboGears 2}
 
 \begin{lstlisting}
 class RootController(BaseController):
@@ -906,24 +908,24 @@ http://localhost:8080/hello => This page is not ready
 \framesubtitle{Django}
   \begin{itemize}[<1->]
     \item SQL-Injection
-    		\begin{itemize}[<1->]
-    			\item automatisches Escape von Benutzereingaben
-    		\end{itemize}
+            \begin{itemize}[<1->]
+                \item automatisches Escape von Benutzereingaben
+            \end{itemize}
     \item Cross-Site Scripting (XSS)
     \begin{itemize}[<1->]
-    			\item automatisches Escape von Benutzereingaben
-    		\end{itemize}
+                \item automatisches Escape von Benutzereingaben
+            \end{itemize}
     \item Cross Site Request Forgery (CSRF)
-    	 \begin{itemize}[<1->]
-    			\item Eingebaute Helper mit CSRF Token
-    		\end{itemize}
+         \begin{itemize}[<1->]
+                \item Eingebaute Helper mit CSRF Token
+            \end{itemize}
     \item Session Forging/Hijacking
     \begin{itemize}[<1->]
-    			\item Session Informationen niemals in URL
-    			\item Daten nicht direkt in Cockies speichern (sondern \"uber Session ID)
-    			\item Escape von Session Daten, wenn in Template dargestellt
-    			\item Eingebauter Schutz gegen Brute-Force Session-Angriff
-    		\end{itemize}
+                \item Session Informationen niemals in URL
+                \item Daten nicht direkt in Cockies speichern (sondern \"uber Session ID)
+                \item Escape von Session Daten, wenn in Template dargestellt
+                \item Eingebauter Schutz gegen Brute-Force Session-Angriff
+            \end{itemize}
     \end{itemize}
 
 \end{frame}
@@ -956,37 +958,46 @@ http://localhost:8080/hello => This page is not ready
   \frametitle{Extras}
   \framesubtitle{Django Adminitration}
   \begin{itemize}[<1->]
-  		\item Eingebaute Administrationsoberfläche
-  		\item Registrierte Modelle können verwaltet werden
+        \item Eingebaute Administrationsoberfläche
+        \item Registrierte Modelle können verwaltet werden
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Kriterienübersicht}
- 
+
+  \vspace{-8pt}
  \rowcolors{1}{white}{solarized@base3}
     \begin{table}[h]
         \begin{tabular}{|c|c|c|}
             \hline
-             & Django & TurboGears 2.0  \\ \hline \hline
+             & Django & TurboGears 2  \\ \hline \hline
              Bootstrapping & \checkmark \cellcolor{dkgreen}   &  \checkmark  \cellcolor{dkgreen}  \\ \hline
-            Scaffolding   &  \checkmark  \cellcolor{dkgreen}  &  tgcrud  \cellcolor{yellow}    \\ \hline
+            %~ Scaffolding: “Django has a bit of a different philosophy. It
+            %~ gives you tools to make doing things easily but doesn't actually
+            %~ do it for you (except the admin interface).”
+            %~ => no boilerplate code
+            Scaffolding   & div. Apps \cellcolor{yellow}  &  tgcrud  \cellcolor{yellow}    \\ \hline
             Persistenz    &  \checkmark  \cellcolor{dkgreen} &  SQLAlchemy  \cellcolor{yellow}      \\ \hline
             Formulare     & \checkmark  \cellcolor{dkgreen}  &  dbsprockets  \cellcolor{yellow}       \\ \hline
-            Validierung   &  \checkmark  \cellcolor{dkgreen} &    FormEncode   \cellcolor{yellow}    \\ \hline
-            Routing       &  RegEx-Patterns  \cellcolor{dkgreen} &  Rails-Routes \cellcolor{dkgreen}   \\ \hline
+            Validierung   &  \checkmark  \cellcolor{dkgreen} & FormEncode \cellcolor{dkgreen}    \\ \hline
+            Routing       &  \checkmark (RegEx-Patterns)  \cellcolor{dkgreen} &  Routes \cellcolor{dkgreen}   \\ \hline
             Templates     &  \checkmark  \cellcolor{dkgreen} &    \checkmark  \cellcolor{dkgreen}      \\ \hline
             L10N          &  \checkmark  \cellcolor{dkgreen} &     \checkmark  \cellcolor{dkgreen}    \\ \hline
             l18N          &  \checkmark  \cellcolor{dkgreen} &     \checkmark  \cellcolor{dkgreen}   \\ \hline
-            Sicherheit    &  \checkmark  \cellcolor{dkgreen} &   Modulabhängig  \cellcolor{yellow}   \\ \hline
-  			Plugins       &  1525+  &  Pylons/Zope/TG     \\ \hline
+            Sicherheit    &  \checkmark  \cellcolor{dkgreen} & modulabhängig  \cellcolor{yellow}   \\ \hline
+            %~ http://turbogears.org/2.2/docs/main/Testing/
+            Unit testing  & \checkmark \cellcolor{dkgreen} & nose \cellcolor{dkgreen} \\ \hline
+            %~ http://turbogears.org/2.2/docs/main/Caching.html
+            Caching       & \checkmark \cellcolor{dkgreen} & Beaker \cellcolor{dkgreen} \\ \hline
+            Plugins       &  1525+ \cellcolor{dkgreen} & \\ \hline
          \end{tabular}
     \end{table}
-		 \begin{table}[h]
+         \begin{table}[h]
         \begin{tabular}{|c|}
             \hline
-            \cellcolor{dkgreen} Vorhanden  \\ \hline
-            \cellcolor{yellow} Über Module zuschaltbar \\ \hline
+            \cellcolor{dkgreen} vorhanden  \\ \hline
+            \cellcolor{yellow} über Module zuschaltbar \\ \hline
          \end{tabular}
     \end{table}
 \end{frame}
@@ -1011,8 +1022,8 @@ http://localhost:8080/hello => This page is not ready
             \begin{figure}
                     \includegraphics[width=\textwidth]{flask_logo.png}
                     \source{[\ref{illu:3}]}
-                \end{figure}            
-            
+                \end{figure}
+
             \end{column}
 
     \begin{column}{.7\textwidth}<1->
@@ -1083,7 +1094,7 @@ $ python hello.py
                     \source{[\ref{illu:4}]}
                 \end{figure}
 
-		   \begin{itemize}[<1->]
+           \begin{itemize}[<1->]
         \item Webframework und Webserver für Python
    \end{itemize}
 
@@ -1118,36 +1129,36 @@ $ python hello.py
 
 \begin{columns}[T]<1->
 
- 	\begin{column}{.3\textwidth}<1->
-            
-    		\begin{figure}
-        		\includegraphics[width=100px]{tornado_logo.png}
+    \begin{column}{.3\textwidth}<1->
+
+            \begin{figure}
+                \includegraphics[width=100px]{tornado_logo.png}
                     \source{[\ref{illu:4}]}
                 \end{figure}
-	\end{column}  
-	\begin{column}{.7\textwidth}<1->
-	\end{column}
-	\end{columns}
+    \end{column}
+    \begin{column}{.7\textwidth}<1->
+    \end{column}
+    \end{columns}
 \vspace{20px}
 
 Was kann/ist Tornado noch ?
 
 \begin{itemize}[<1->]
                 \item Core Web-Framework
-            		\begin{itemize}[<1->]
+                    \begin{itemize}[<1->]
                     \item Template System (tornado.template)
                     \item Internationalisierung (tornado.locale)
-					\item Unit Testing (tornado.testing)
+                    \item Unit Testing (tornado.testing)
                 \end{itemize}
-                \item Einige weitere Hilfsmittel, Services,... 
+                \item Einige weitere Hilfsmittel, Services,...
                 \begin{itemize}[<1->]
                     \item Nicht blockierender HTTP-Client
                     \item Login mit OpenID und OAuth (3rd party)
                     \item MySQL client Wrapper
                     \item ...
                 \end{itemize}
-        \end{itemize}  
-  
+        \end{itemize}
+
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1183,15 +1194,15 @@ if __name__ == "__main__":
                 \end{figure}
 
             \end{column}
-		\begin{column}{.7\textwidth}<1->
-		\end{column}
+        \begin{column}{.7\textwidth}<1->
+        \end{column}
         \end{columns}
 
- 		\begin{beamerpostit}
-    			\begin{quote}
-    				“\dots a fast, simple and lightweight WSGI micro web-framework for Python \dots"
-    			\end{quote}
-    		\end{beamerpostit}\source{[\ref{zit:3}]}
+        \begin{beamerpostit}
+                \begin{quote}
+                    “\dots a fast, simple and lightweight WSGI micro web-framework for Python \dots"
+                \end{quote}
+            \end{beamerpostit}\source{[\ref{zit:3}]}
 
             \vspace{20px}
             \begin{itemize}[<1->]
@@ -1236,14 +1247,14 @@ run(host='localhost', port=8080)
             \end{column}
 
             \begin{column}{.7\textwidth}<1->
-        		 \end{column}
+                 \end{column}
         \end{columns}
          \begin{beamerpostit}
-			\begin{quote}
+            \begin{quote}
       “\dots is a web framework for Python that is as simple as it is powerful \dots”
     \end{quote} %~ FIXME Quelle
          \end{beamerpostit}\source{[\ref{zit:4}]}
-        
+
          \vspace{20px}
             \begin{itemize}[<1->]
                 \item Was kann/ist web.py ?
@@ -1284,19 +1295,19 @@ if __name__ == "__main__":
 \begin{frame}
   \frametitle{Beliebtheit Full-Stack-Frameworks}
   \framesubtitle{Google Trends}
-	\vspace{-12pt}
+    \vspace{-12pt}
      \begin{figure}
          \includegraphics[width=1.0\textwidth]{trends.png}
-                   
+
      \end{figure}
      \vspace{-12pt}
      Anzahl der Themen in den jeweiligen Mailinglisten:
      \vspace{8pt}
       \begin{itemize}[<1->]
-     	\item Django: 37967
-     	\item web2py: 19329
-     	\item Turbogears: 9959
-     	\item Pylons: 4966
+        \item Django: 37967
+        \item web2py: 19329
+        \item Turbogears 2: 9959
+        \item Pylons: 4966
      \end{itemize}
 
 \end{frame}
@@ -1305,10 +1316,10 @@ if __name__ == "__main__":
   \frametitle{Beliebtheit Microframeworks}
   \framesubtitle{Google Trends}
 
-     
+
       \begin{figure}
          \includegraphics[width=1.0\textwidth]{trends-micro.png}
-                   
+
      \end{figure}
 
 \end{frame}
@@ -1374,7 +1385,7 @@ if __name__ == "__main__":
     \item web.py Logo
         \url{http://webpy.org/static/webpy.gif}             \label{illu:7}
      \item po-Editor
-        \url{http://www.turbogears.org/2.1/docs/_images/poedit.png}     \label{illu:8}
+        \url{http://www.turbogears.org/2.2/docs/_images/poedit.png}     \label{illu:8}
 \item Django Logo
         \url{https://www.djangoproject.com/m/img/logos/django-logo-positive.png  }
 \label{illu:9}
@@ -1391,22 +1402,22 @@ if __name__ == "__main__":
   \begin{enumerate}[<1->]
   \setcounter{enumi}{9}
     \item Flask
-        \url{http://flask.pocoo.org/}       		
+        \url{http://flask.pocoo.org/}
         \label{zit:1}
     \item Tornado
-        \url{http://www.tornadoweb.org/documentation/overview.html}       
+        \url{http://www.tornadoweb.org/documentation/overview.html}
         \label{zit:2}
-   	\item Bottle
-        \url{http://bottlepy.org/docs/dev/}       
+    \item Bottle
+        \url{http://bottlepy.org/docs/dev/}
         \label{zit:3}
-   	\item web.py
-        \url{http://webpy.org/}       
+    \item web.py
+        \url{http://webpy.org/}
         \label{zit:4}
-           
+
   \end{enumerate}
   alle URLs aufgerufen am 27. November 2012.
-\todo{setcounter anpassen}  
-  
+\todo{setcounter anpassen}
+
 \end{frame}
 
 \end{document}
