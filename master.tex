@@ -400,6 +400,8 @@ for i in range(1, 10):
             \item \textbf{TurboGears}
             \item web2py
             \item Pylons/Pyramid
+            \item Zope2
+            \item Grok
             \item \dots
         \end{itemize}
     \end{column}
@@ -430,6 +432,7 @@ for i in range(1, 10):
                     \includegraphics[width=25mm]{django-logo.png}
                     \source{[\ref{illu:9}]}
   \end{figure}
+  \vspace{-12pt}
 
   \begin{beamerpostit}
     \begin{quote}
@@ -478,7 +481,13 @@ for i in range(1, 10):
 
 \begin{frame}
 \frametitle{Turbogears }
-  
+
+  \vspace{-32pt}
+  \begin{figure}
+            \includegraphics[width=20mm]{tg.png}
+            \source{[\ref{illu:10}]}
+  \end{figure}
+  \vspace{-18pt}
 
   \begin{beamerpostit}
     \begin{quote}
@@ -507,29 +516,18 @@ for i in range(1, 10):
     \foreach \x in {2005,2009,2011,2012}
         \node at (y\x) [below=3pt] {\x};
 
-    \fill (y2005) circle (3pt) node[above=3pt] {1.0};
-    \fill (y2009) circle (3pt) node[above=12pt] {1.1};
+    \fill (y2005) circle (3pt) node[above=12pt] {1.0};
+    \fill (y2009) circle (3pt) node[above=13pt] {1.1};
     \fill (y2009) circle (3pt) node[above=3pt] {2.0};
     \fill (y2011) circle (3pt) node[above=3pt] {2.1};
     \fill (y2012) circle (3pt) node[above=3pt] {2.2};
   \end{tikzpicture}
   \vspace{12pt} \\
-    \begin{columns}[T]<1->
-    \begin{column}[T]{.5\textwidth}<1->
+
   \begin{itemize}[<1->]
-  \item Aus extern gepflegten Python Modulen zusammengesetzt
-  \item Module sind dabei austauschbar
+  \item Aus extern gepflegten Python-Modulen zusammengesetzt
+  \item Module sind austauschbar
   \end{itemize}
-  \end{column}
-   \begin{column}[T]{.5\textwidth}<1->
-  \begin{figure}
-            \includegraphics[width=20mm]{tg.png}
-            \source{[\ref{illu:10}]}
-  \end{figure}
-   \end{column}
-    \end{columns}
-  %~ Some well known sites that use Django include Pinterest, Instagram, Mozilla,
-  %~ The Washington Times and the Public Broadcasting Service.
 
 \end{frame}
 
@@ -653,7 +651,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}[fragile]
   \frametitle{Formulare, Validierung}
   \framesubtitle{Turbogears 2.0}
-  
+
   \begin{itemize}[<1->]
      \item Hier kann \textit{DBSprockets} verwendet werden
      \item DBSprockets unterstützt \textit{SQLAlchemy}
@@ -674,7 +672,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}
   \frametitle{Templates}
   \framesubtitle{Templates in Python}
-  
+
   \begin{itemize}[<1->]
     \item Text-basiert:
         \begin{itemize}[<1->]
@@ -702,17 +700,20 @@ Employee.objects.filter(concern=concern).update(boss=True)
 \begin{frame}[fragile]
     \frametitle{Templates}
     \framesubtitle{Django template language}
+    %~ https://docs.djangoproject.com/en/1.4/topics/templates/
+    \vspace{-8pt}
      \begin{itemize}[<1->]
-        \item Template-Inheritance
-        \item Unterstüzt Filter und Kontrollstrukturen
+        \item Template-Vererbung
+        \item Trennung von Programmlogik und -darstellung
+        \item Unterstützt Filter und elementare Kontrollstrukturen
+        %~ https://docs.djangoproject.com/en/1.4/howto/custom-template-tags/
+        %\item erweiterbar
      \end{itemize}
 
-\vspace{12pt}
+\vspace{-12pt}
 \begin{columns}<1->
     \begin{column}{.55\textwidth}<1->
-    \textit{base.html:}
-
-\begin{lstlisting}
+\begin{lstlisting}[title=base.html]
 <body>
   <div id="content">
     {% block main %}{% endblock %}
@@ -720,7 +721,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
 </body>
 \end{lstlisting}
 \hrule
-\begin{lstlisting}
+\begin{lstlisting}[title=site.html]
 {% extends "base.html" %}
 
 {% block main %}
@@ -766,8 +767,10 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \frametitle{I18N und L10N}
   \framesubtitle{Django}
   \begin{itemize}[<1->]
-    \item Unterstützt Textübersetzung, Datums-, Zeit und Zahlenformattierung, Zeitzonen und Pluralisierung
-    \item Markieren der Texte mit ugettext
+    \item Unterstützt Textübersetzung, Datums-, Zeit und Zahlenformatierung,
+        Zeitzonen und Pluralisierung
+    \item Markieren der Texte mit \textit{ugettext}
+    \item Übersetzung innerhalb von Python, Templates und JavaScript
   \end{itemize}
   \begin{lstlisting}
    from django.utils.translation import ugettext as _
@@ -777,7 +780,7 @@ Employee.objects.filter(concern=concern).update(boss=True)
       return HttpResponse(output)
   \end{lstlisting}
   \begin{itemize}[<1->]
-    \item Werkzeuge zum erstellen neuer Sprachdateien: \\
+    \item Werkzeuge zum Erstellen neuer Sprachdateien: \\
         \textbf{django-admin.py makemessages -l de}
   \end{itemize}
    \begin{lstlisting}
@@ -982,19 +985,19 @@ $ python hello.py
 
  \begin{columns}[T]<1->
 
- 	\begin{column}{.3\textwidth}<1->
-            
-    		\begin{figure}
-        		\includegraphics[width=100px]{tornado_logo.png}
+    \begin{column}{.3\textwidth}<1->
+
+            \begin{figure}
+                \includegraphics[width=100px]{tornado_logo.png}
                     \source{[\ref{illu:4}]}
                 \end{figure}
-	\end{column}                
+    \end{column}
   %~ http://en.wikipedia.org/wiki/Tornado_%28web_server%29
   %~ http://developers.facebook.com/blog/post/301/
   %~ http://news.cnet.com/8301-17939_109-10349836-2.html
 
  \begin{column}{.6\textwidth}<1->
-            
+
   \vspace{15px}
   \begin{beamerpostit}
     \begin{quote}
@@ -1005,14 +1008,14 @@ $ python hello.py
   \end{beamerpostit}
   \end{column}
   \end{columns}
-  
+
 \vspace{20px}
    \begin{itemize}[<1->]
-   		\item Webframework und Webserver für Python
+        \item Webframework und Webserver für Python
    \end{itemize}
 
    \begin{figure}
-   		\includegraphics[width=\textwidth]{tornado_stat.png}
+        \includegraphics[width=\textwidth]{tornado_stat.png}
          \source{[\ref{illu:5}]}
    \end{figure}
 
@@ -1145,17 +1148,28 @@ if __name__ == "__main__":
 \begin{frame}
   \frametitle{Vergleich der Microframeworks}
 
+  \vspace{-8pt}
+  \rowcolors{1}{white}{solarized@base3}
     \begin{table}[h]
         \begin{tabular}{|c|c|c|c|c|}
             \hline
-             		& Flask & Tornado & Bottle & web.py \\ \hline
-            St\"arke &   &	schnell  &   &      \\ \hline
-            Grenzen &   &   &   &      \\ \hline
-            ?? &   &   &   &      \\ \hline
-            ?? &   &   &   &      \\ \hline
-            ?? &   &   &   &      \\ \hline
-            ?? &   &   &   &      \\ \hline
-
+                          & Flask & Tornado & Bottle & web.py \\ \hline \hline
+            Besonderheit  &   &  schnell  &   &      \\ \hline \hline
+            Bootstrapping &   &   &   &      \\ \hline
+            Scaffolding   &   &   &   &      \\ \hline
+            Persistenz    &   &   &   &      \\ \hline
+            Formulare     &   &   &   &      \\ \hline
+            Validierung   &   &   &   &      \\ \hline
+            Routing       &   &   &   &      \\ \hline
+            Templates     &   &   &   &      \\ \hline
+            L10N          &   &   &   &      \\ \hline
+            l18N          &   &   &   &      \\ \hline
+            Konfiguration &   &   &   &      \\ \hline
+            Plugins       &   &   &   &      \\ \hline
+            Sicherheit    &   &   &   &      \\ \hline
+            Caching       &   &   &   &      \\ \hline
+            Webservices   &   &   &   &      \\ \hline
+            Unit testing  &   &   &   &      \\ \hline
          \end{tabular}
     \end{table}
 
