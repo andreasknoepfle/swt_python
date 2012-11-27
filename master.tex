@@ -832,6 +832,7 @@ urlpatterns = patterns('news.views',
 )
 \end{lstlisting}
 \hrule
+    \vspace{10pt}
 \begin{lstlisting}
 /articles/2005/03/     => month_archive(request,'2005','03')
 /articles/2005/3/      => no match
@@ -851,7 +852,7 @@ urlpatterns = patterns('news.views',
       “\dots By default you don’t need to think about Routes at all \dots”
     \end{quote} %~ FIXME Quelle
   \end{beamerpostit}
-
+    \vspace{15pt}
      \begin{itemize}[<1->]
         \item Object Dispatch, und built in Routes Integration
         \item kann überschrieben werden
@@ -861,7 +862,28 @@ urlpatterns = patterns('news.views',
 
 
 \begin{frame}[fragile]
-\frametitle{Routing Beispiel TurboGear 2.0}
+
+\frametitle{Routing Beispiel TurboGears}
+
+\begin{lstlisting}
+class RootController(BaseController):
+
+     @expose()
+     def index(self):
+         return "<h1>Hello World</h1>"
+
+     @expose()
+     def default(self, *args, **kw):
+         return "This page is not ready"
+\end{lstlisting}
+\hrule
+    \vspace{10pt}
+\begin{lstlisting}
+http://localhost:8080/index => Hello World
+
+http://localhost:8080/hello => This page is not ready
+\end{lstlisting}
+
 
 \end{frame}
 
@@ -881,9 +903,23 @@ urlpatterns = patterns('news.views',
 
 \begin{frame}
   \frametitle{Sicherheitmechanismen}
-
+\framesubtitle{Django}
   \begin{itemize}[<1->]
-    \item django: http://www.djangobook.com/en/2.0/chapter20.html
+    \item SQL-Injection
+    		\begin{itemize}[<1->]
+    			\item automatisches Escape von Benutzereingaben
+    		\end{itemize}
+    \item Cross-Site Scripting (XSS)
+    \begin{itemize}[<1->]
+    			\item automatisches Escape von Benutzereingaben
+    		\end{itemize}
+    \item Session Forging/Hijacking
+    \begin{itemize}[<1->]
+    			\item Session Informationen niemals in URL
+    			\item Daten nicht direkt in Cockies speichern (sondern \"uber Session ID)
+    			\item Escape von Session Daten, wenn in Template dargestellt
+    			\item Eingebauter Schutz gegen Brute-Force Session-Angriff
+    		\end{itemize}
     \end{itemize}
 
 \end{frame}
@@ -891,11 +927,11 @@ urlpatterns = patterns('news.views',
 
 \begin{frame}[fragile]
   \frametitle{ Scaffolding}
-Django
+\framesubtitle{Django}
  \begin{itemize}[<1->]
     \item django-common-helpers plugin (https://github.com/Tivix/django-common)
     \item create app,create models,create views,create templates,create forms,create urls,create tests.
-    \item Generic-Views
+    \item Generic-Views (siehe Beispiel-Applikation)
  \end{itemize}
     \vspace{15pt}
 
@@ -1162,7 +1198,7 @@ run(host='localhost', port=8080)
     \end{quote} %~ FIXME Quelle
          \end{beamerpostit}\source{[\ref{zit:4}]}
         
-         \vspace{50px}
+         \vspace{20px}
             \begin{itemize}[<1->]
                 \item Was kann/ist web.py ?
             \begin{itemize}[<1->]
@@ -1281,6 +1317,7 @@ if __name__ == "__main__":
     \item \url{http://blog.ianbicking.org/turbogears-and-pylons.html}
     \item \url{https://docs.djangoproject.com/en/dev/topics/}
     \item \url{https://docs.djangoproject.com/en/dev/misc/design-philosophies/}
+    \item \url{http://www.djangobook.com/en/2.0/chapter20.html}
   \end{itemize}
 
   alle URLs aufgerufen am 20. November 2012.
