@@ -223,7 +223,6 @@
   % - In Python geschriebene Webframework gibt es wie „Sand am Meer“\\
   % - Warum? Einblick gibt unser Vortrag\\
 
-  %~ Größe spiegelt „Machtverhältnisse“ da
   %~ Einige werdet ihr im Laufe des Vortrages kennenlernen
   %~ Hat jemand schon von einem Webframework für Python gehört?
 \end{frame}
@@ -279,12 +278,12 @@
   \begin{itemize}[<1->]
     \item Entwurfsphilosophie betont Programmlesbarkeit
     \begin{itemize}[<1->]
-      \item Blöcke durch gleiche Einrückung begrenzt
+      \item reduzierte Syntax
       \item relativ wenige Schlüsselwörter
     \end{itemize}
     %\item Dynamische Programmiersprache
    % Python-Interpreter mit interaktiven Modus
-    \item Multiparadigmen-Sprache (primär OOP, funktional, AOP)
+    \item Multiparadigmen-Sprache (primär OOP/imperativ, auch funktional, AOP)
     \item dynamische Datentypen, garbage collection
     \item große, umfangreiche Standardbibliothek “batteries included”
   \end{itemize}
@@ -295,19 +294,6 @@
 
   %~  * Plugins für Eclipse, NetBeans, Vim, Emacs und v.a.
 \end{frame}
-
-
-%\begin{frame}
-%
-%  \hspace{12pt}
-%  \makebox[\textwidth][c]{%
-%    \begin{minipage}[c]{0.85\columnwidth}
-%      \resizebox{\linewidth}{!}{PEP 8}
-%    \end{minipage}
-%  }
-%  %~ coding conventions
-%
-%\end{frame}
 
 
 %~ Codebeispiele
@@ -354,12 +340,41 @@ for i in range(1, 10):
         \begin{column}{.2\textwidth}<1->
       \begin{figure}
         \includegraphics[height=25mm,trim=0 0 1500px 0]{python_logo_2006.png}
-        \source{[\ref{illu:2}]}
+        \source{[\ref{illu:12}]}
       \end{figure}
     \end{column}
   \end{columns}
 
   %~ * Development style issues
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Kernphilosophie~-- \textit{The Zen of Python}}
+
+  \begin{columns}[T]<1->
+    \begin{column}{.7\textwidth}<1->
+  \begin{beamerpostit}
+    \begin{quote}
+    “Beautiful is better than ugly.\\
+    Explicit is better than implicit.\\
+    Simple is better than complex.\\
+    Complex is better than complicated.\\
+    Flat is better than nested.\\
+    \dots \\
+    Readability counts.\\
+    \dots \\
+    If the implementation is hard to explain, it's a bad idea.\\
+    If the implementation is easy to explain, it may be a good idea.\\
+    \dots ”
+    \end{quote}
+  \end{beamerpostit}\source{[\ref{zit:5}]}
+    \end{column}
+    \begin{column}{.3\textwidth}<1->
+      \includegraphics[width=.9\textwidth]{zen.png}
+      \source{[\ref{illu:11}]}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
@@ -1398,6 +1413,15 @@ if __name__ == "__main__":
   \begin{enumerate}[<1->]
     \item Innenhof Informatik
         \url{http://www.flickr.com/photos/bennybenny/3597853896/}       \label{illu:1}
+    \item Logo Java
+      \url{http://de.wikipedia.org/w/index.php?title=Datei:Java-Logo.svg&oldid=95163279}
+      \label{illu:2}
+    \item Logo Python
+      \url{http://www.python.org/community/logos/}
+      \label{illu:12}
+    \item Bild Zen
+      \url{http://de.wikipedia.org/w/index.php?title=Datei:Ochsenbild08Haikon.png&oldid=101311361}
+      \label{illu:11}
 
    \item Flask Logo
         \url{http://flask.pocoo.org/static/logo.png}                    \label{illu:3}
@@ -1442,6 +1466,9 @@ if __name__ == "__main__":
     \item web.py
         \url{http://webpy.org/}
         \label{zit:4}
+    \item The Zen of Python
+        \url{http://www.python.org/dev/peps/pep-0020/}
+        \label{zit:5}
 
   \end{enumerate}
   alle URLs aufgerufen am 27. November 2012.

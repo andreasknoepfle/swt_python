@@ -29,7 +29,7 @@
   %~ \insertfachbereich, \inserttitle, \insertdate
   %~ \hfill \insertframenumber/\inserttotalframenumber}
 \newcommand{\FU@footline}{%
-    \inserttitle \hfill \insertframenumber/\inserttotalframenumber}
+    \insertauthor \hfill \insertsection \hfill \insertframenumber}
 
 %~ \defbeamertemplate{footline}{\FU}{%
   %~ \begin{beamercolorbox}[leftskip=15pt,rightskip=15pt,ht=2.5ex,dp=1ex]{footline}
@@ -40,10 +40,8 @@
 %~ }
 
 \setbeamertemplate{footline}{%
-  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,leftskip=0.5cm,rightskip=0.5cm]{footline}
-    \hspace*{-15pt}%
-    \usebeamerfont{footline}\hfill\FU@footline
-    %~ \vspace{1ex}
+  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,leftskip=15pt,rightskip=15pt]{footline}
+    \usebeamerfont{footline}\FU@footline
   \end{beamercolorbox}%
 }
 
