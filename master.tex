@@ -425,6 +425,20 @@ for i in range(1, 10):
 \end{frame}
 
 
+\begin{frame}[fragile]
+  \frametitle{WSGI Hello World App}
+
+  \begin{lstlisting}
+def simple_app(environ, start_response):
+    """Simplest possible application object"""
+    status = "200 OK"
+    response_headers = [("Content-type", "text/plain")]
+    start_response(status, response_headers)
+    return ["Hello World!\n"]
+  \end{lstlisting}
+\end{frame}
+
+
 \begin{frame}
   \frametitle{Python~-- Programmiersprache fürs Web!}
 
