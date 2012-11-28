@@ -228,10 +228,19 @@
 \end{frame}
 
 
-\begin{frame}
+%~ roter Faden
+\begin{frame}[fragile]
   \frametitle{Gliederung}
+
   \tableofcontents
-  %~ roter Faden
+
+  \begin{figure}
+  \begin{tikzpicture}[overlay]
+    \node at (30mm, 28mm)
+      {\includegraphics[width=63mm]{python_presentation.png}};
+  \end{tikzpicture}\source{[\ref{illu:13}]}
+  \end{figure}
+
 \end{frame}
 
 
@@ -392,22 +401,20 @@ for i in range(1, 10):
       %~ http://de.wikipedia.org/wiki/Modifizierbarkeit
       Modifizierbarkeit    & \textbf{Python} & Ruby & Java, PHP \\ \hline
       %~ http://de.wikipedia.org/wiki/Robustheit
-      Robustheit           & Java, \textbf{Python}, Ruby & -- & PHP \\ \hline
       Sicherheit           & Java, \textbf{Python}, Ruby & -- & PHP \\ \hline
       %~ http://de.wikipedia.org/wiki/Programmierwerkzeug
       Werkzeuge & Java & PHP, \textbf{Python}, Ruby &  \\ \hline
     \end{tabular}
   \end{table}
 
-  Ähnliche/sekundäre Eigenschaften: Abhängigkeit von Programmierwerkzeugen,
-  Skalierbarkeit und Speicherbedarf
+  Ähnliche/sekundäre Eigenschaften: Geschwindigkeit, Skalierbarkeit und
+  Speicherbedarf
 
   \vspace{12pt}
   Vereinfachte Übersicht auf Grundlage von %\citetitle{hardy:2007} %\cite{hardy:2007}
 \end{frame}
 
 
-\subsection{Portabilität durch WSGI}
 \begin{frame}
   \frametitle{Web Server Gateway Interface (WSGI)}
   %~ http://www.python.org/dev/peps/pep-0333/
@@ -421,10 +428,12 @@ for i in range(1, 10):
 \begin{frame}
   \frametitle{Python~-- Programmiersprache fürs Web!}
 
-  Zusammenfassung der genannten Punkte
-
-  \todo{add bullet points, aber dann auch mit Argumentation warum
-      das für Webanwendungen besonders geeignet ist ==$>$ B.}
+  %~ Zusammenfassung der genannten Punkte
+  %~ Argumentation warum das für Webanwendungen besonders geeignet ist
+  \begin{itemize}[<1->]
+    \item Eignung Programmiersprache für Aufgabe
+    \item gute Softwarequalität in der Praxis
+  \end{itemize}
 
 \end{frame}
 
@@ -1377,6 +1386,13 @@ if __name__ == "__main__":
     \item Je nach Vorliebe, Anforderungen und Vorkenntnissen
     \item Jedes Framework hat Stärken/Schwächen
   \end{itemize}
+
+  \begin{figure}
+  \begin{tikzpicture}[overlay]
+    \node at (30mm, -30mm)
+      {\includegraphics[width=63mm]{python_presentation_end.png}};
+  \end{tikzpicture}\source{[\ref{illu:14}]}
+  \end{figure}
   %~ * Ich hoffe, habt jetzt einen besseren Eindruck über Webframeworks für
   %~   Python gewinnen können.
   %~ * Vielen Dank für die Aufmerksamkeit.
@@ -1413,6 +1429,9 @@ if __name__ == "__main__":
   \begin{enumerate}[<1->]
     \item Innenhof Informatik
         \url{http://www.flickr.com/photos/bennybenny/3597853896/}       \label{illu:1}
+    \item Albino Python
+        \url{http://www.flickr.com/photos/34525959@N08/3522274687/}
+        \label{illu:13}
     \item Logo Java
       \url{http://de.wikipedia.org/w/index.php?title=Datei:Java-Logo.svg&oldid=95163279}
       \label{illu:2}
@@ -1445,6 +1464,9 @@ if __name__ == "__main__":
 \item Turbogears Logo
         \url{http://turbogears.org/2.0/docs/_static/tg.png}
 \label{illu:10}
+    \item Python kids
+        \url{http://www.flickr.com/photos/8113820@N05/2458633114/}
+        \label{illu:14}
   \end{enumerate}
   alle URLs aufgerufen am 14. November 2012.
 \end{frame}
