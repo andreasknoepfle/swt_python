@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'swtdemo'
 ]
 ROOT_URLCONF = 'swtdemo.urls'
-TEMPLATE_DIRS = 'tpl'
+TEMPLATE_DIRS = 'src/swtdemo/tpl'
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',

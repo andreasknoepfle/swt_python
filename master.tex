@@ -710,11 +710,23 @@ Employee.objects.filter(concern=concern).update(boss=True)
   \frametitle{Formulare, Validierung}
 
   \framesubtitle{Django}
-  Verwendung des Erzeugten Formulars im Template
+  \vspace{-18pt}
   \begin{lstlisting}
-
+<form action="{% url employee_add %}" method="post">
+  {{ form.as_p }}  {% csrf_token %}
+  <input type="submit" value="Submit" />
+</form>
+  \end{lstlisting}\vspace{-12pt}
+  \hrule
+  \begin{lstlisting}
+<form action="/employee/add/" method="post">
+<p><label for="id_name">Name:</label> <input id="id_name" type="text" name="name" maxlength="60" /></p>
+<p><label for="id_boss">Boss:</label> <input type="checkbox" name="boss" id="id_boss" /></p>
+<p><label for="id_concern">Concern:</label> <select name="concern" id="id_concern"><option value="" selected="selected">---------</option><option value="1">Concern object</option>
+</select></p>  <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='mgPxkm0c21WH81X0LIZEFoBxrDhCY2oW' /></div>
+  <input type="submit" value="Submit" />
+</form>
   \end{lstlisting}
-  Ausgabe
 
 \end{frame}
 
